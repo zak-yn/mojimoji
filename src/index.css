@@ -255,6 +255,46 @@ button:active {
   border-color: var(--accent-navy);
 }
 
+/* Category Filter Chips */
+.category-filter-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 18px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-filter-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  border-radius: var(--radius-round);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.filter-chip:hover {
+  background-color: var(--bg-muted);
+  color: var(--text-main);
+}
+
+.filter-chip.active {
+  background-color: var(--accent-navy);
+  color: #FFFFFF;
+  border-color: var(--accent-navy);
+  box-shadow: 0 3px 8px rgba(56, 81, 109, 0.2);
+}
+
 /* Category Grid */
 .category-grid {
   display: grid;

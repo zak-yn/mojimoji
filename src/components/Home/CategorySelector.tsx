@@ -20,41 +20,74 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
   onSelectCategory,
   onStartQuiz
 }) => {
+  const [langFilter, setLangFilter] = React.useState<'all' | 'ja' | 'num' | 'en' | 'pl'>('all');
+
   const categories: { id: LanguageType; sample: string; desc: string; color: string; accent: string }[] = [
     {
       id: 'hiragana',
       sample: 'あいうえお',
-      desc: 'にほんごの きほん',
+      desc: 'にほんごの きほん (46もじ)',
       color: '#FFF9F5',
       accent: '#D96B43'
     },
     {
       id: 'katakana',
       sample: 'アイウエオ',
-      desc: 'ことばの はばを ひろげよう',
+      desc: 'ことばの はばを ひろげよう (46もじ)',
       color: '#F6F9F6',
       accent: '#5A826D'
     },
     {
+      id: 'numbers',
+      sample: '1 2 3 4 5',
+      desc: '0から9までの すうじ (10もじ)',
+      color: '#FFFDF0',
+      accent: '#D99E1F'
+    },
+    {
       id: 'english',
       sample: 'A B C D E',
-      desc: 'ABC えいごの アルファベット',
+      desc: 'ABC えいごの おおもじ (26もじ)',
       color: '#F6F8FB',
       accent: '#47688A'
     },
     {
+      id: 'english_lower',
+      sample: 'a b c d e',
+      desc: 'abc えいごの こもじ (26もじ)',
+      color: '#F4F8FA',
+      accent: '#3E7B8E'
+    },
+    {
       id: 'polish',
       sample: 'A Ą B C Ć',
-      desc: 'Polski ポーランドごの もじ',
+      desc: 'Polski ポーランドごの おおもじ (26もじ)',
       color: '#FCF8F3',
       accent: '#C76A75'
+    },
+    {
+      id: 'polish_lower',
+      sample: 'a ą b c ć',
+      desc: 'polski ポーランドごの こもじ (26もじ)',
+      color: '#FAF5F5',
+      accent: '#B85866'
     }
   ];
+
+  const filteredCategories = categories.filter(cat => {
+    if (langFilter === 'ja') return cat.id === 'hiragana' || cat.id === 'katakana';
+    if (langFilter === 'num') return cat.id === 'numbers';
+    if (langFilter === 'en') return cat.id === 'english' || cat.id === 'english_lower';
+    if (langFilter === 'pl') return cat.id === 'polish' || cat.id === 'polish_lower';
+    return true;
+  });
 
   const handleCardClick = (lang: LanguageType) => {
     sound.playTap();
     const set = CHARACTER_SETS[lang];
-    speech.speak(set.title, set.langCode);
+    if (set) {
+      speech.speak(set.title, set.langCode);
+    }
     onSelectCategory(lang);
   };
 
@@ -108,9 +141,63 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
         </div>
       </section>
 
+      {/* Language Filter Chips */}
+      <div className="category-filter-chips">
+        <button
+          id="btn-filter-all"
+          className={`filter-chip ${langFilter === 'all' ? 'active' : ''}`}
+          onClick={() => {
+            sound.playTap();
+            setLangFilter('all');
+          }}
+        >
+          すべて
+        </button>
+        <button
+          id="btn-filter-ja"
+          className={`filter-chip ${langFilter === 'ja' ? 'active' : ''}`}
+          onClick={() => {
+            sound.playTap();
+            setLangFilter('ja');
+          }}
+        >
+          にほんご
+        </button>
+        <button
+          id="btn-filter-num"
+          className={`filter-chip ${langFilter === 'num' ? 'active' : ''}`}
+          onClick={() => {
+            sound.playTap();
+            setLangFilter('num');
+          }}
+        >
+          すうじ
+        </button>
+        <button
+          id="btn-filter-en"
+          className={`filter-chip ${langFilter === 'en' ? 'active' : ''}`}
+          onClick={() => {
+            sound.playTap();
+            setLangFilter('en');
+          }}
+        >
+          えいご
+        </button>
+        <button
+          id="btn-filter-pl"
+          className={`filter-chip ${langFilter === 'pl' ? 'active' : ''}`}
+          onClick={() => {
+            sound.playTap();
+            setLangFilter('pl');
+          }}
+        >
+          ポーランドご
+        </button>
+      </div>
+
       {/* Language Category Cards Grid */}
       <section className="category-grid">
-        {categories.map(cat => {
+        {filteredCategories.map(cat => {
           const charSet = CHARACTER_SETS[cat.id];
           const totalChars = charSet.characters.length;
           const completedCount = charSet.characters.filter(

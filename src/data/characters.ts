@@ -2063,6 +2063,192 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
   }
     ]
   },
+  numbers: {
+    id: 'numbers',
+    title: 'すうじ',
+    subtitle: '0から9までの すうじ (10もじ)',
+    langCode: 'ja-JP',
+    characters: [
+  {
+    "id": "num_0",
+    "char": "0",
+    "romajiOrPhonetic": "0",
+    "letterName": "ぜろ",
+    "letterSound": "ぜろ",
+    "phonicsSpokenText": "ぜろ",
+    "exampleWord": "ぜろ",
+    "exampleTranslation": "0",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 54.5 20 C 36 20 28 36 28 55 C 28 74 36 90 54.5 90 C 73 90 81 74 81 55 C 81 36 73 20 54.5 20 Z"
+      }
+    ]
+  },
+  {
+    "id": "num_1",
+    "char": "1",
+    "romajiOrPhonetic": "1",
+    "letterName": "いち",
+    "letterSound": "いち",
+    "phonicsSpokenText": "いち",
+    "exampleWord": "いちご",
+    "exampleTranslation": "1こ",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 42 34 L 55 20 L 55 90"
+      }
+    ]
+  },
+  {
+    "id": "num_2",
+    "char": "2",
+    "romajiOrPhonetic": "2",
+    "letterName": "に",
+    "letterSound": "に",
+    "phonicsSpokenText": "に",
+    "exampleWord": "にじ",
+    "exampleTranslation": "2ほん",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 36 36 C 36 24 45 20 54.5 20 C 66 20 74 27 74 38 C 74 54 52 72 32 90 L 78 90"
+      }
+    ]
+  },
+  {
+    "id": "num_3",
+    "char": "3",
+    "romajiOrPhonetic": "3",
+    "letterName": "さん",
+    "letterSound": "さん",
+    "phonicsSpokenText": "さん",
+    "exampleWord": "さんかく",
+    "exampleTranslation": "3かく",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 36 26 C 42 20 64 20 70 30 C 74 37 68 48 50 50 C 70 52 76 64 74 74 C 70 86 48 90 34 84"
+      }
+    ]
+  },
+  {
+    "id": "num_4",
+    "char": "4",
+    "romajiOrPhonetic": "4",
+    "letterName": "よん",
+    "letterSound": "よん",
+    "phonicsSpokenText": "よん",
+    "exampleWord": "よつば",
+    "exampleTranslation": "4つ",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 68 20 L 30 68 L 80 68"
+      },
+      {
+        "order": 2,
+        "d": "M 64 48 L 64 90"
+      }
+    ]
+  },
+  {
+    "id": "num_5",
+    "char": "5",
+    "romajiOrPhonetic": "5",
+    "letterName": "ご",
+    "letterSound": "ご",
+    "phonicsSpokenText": "ご",
+    "exampleWord": "ごえんだま",
+    "exampleTranslation": "5えん",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 44 22 L 42 50 C 46 47 54 46 62 48 C 74 52 78 64 76 74 C 72 86 52 90 34 86"
+      },
+      {
+        "order": 2,
+        "d": "M 44 22 L 74 22"
+      }
+    ]
+  },
+  {
+    "id": "num_6",
+    "char": "6",
+    "romajiOrPhonetic": "6",
+    "letterName": "ろく",
+    "letterSound": "ろく",
+    "phonicsSpokenText": "ろく",
+    "exampleWord": "ろーそく",
+    "exampleTranslation": "6ぽん",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 68 24 C 52 24 34 44 32 65 C 32 80 44 90 56 90 C 70 90 78 80 78 68 C 78 55 66 48 52 48 C 42 48 34 55 33 65"
+      }
+    ]
+  },
+  {
+    "id": "num_7",
+    "char": "7",
+    "romajiOrPhonetic": "7",
+    "letterName": "なな",
+    "letterSound": "なな",
+    "phonicsSpokenText": "なな",
+    "exampleWord": "ななほしてんとう",
+    "exampleTranslation": "7つ星",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 22 L 76 22 L 44 90"
+      }
+    ]
+  },
+  {
+    "id": "num_8",
+    "char": "8",
+    "romajiOrPhonetic": "8",
+    "letterName": "はち",
+    "letterSound": "はち",
+    "phonicsSpokenText": "はち",
+    "exampleWord": "はち",
+    "exampleTranslation": "8ほんあし",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 54.5 20 C 42 20 36 30 36 38 C 36 46 44 50 54.5 52 C 66 54 74 60 74 72 C 74 84 64 90 54.5 90 C 44 90 34 84 34 72 C 34 60 44 54 54.5 52 C 64 50 72 46 72 38 C 72 30 66 20 54.5 20 Z"
+      }
+    ]
+  },
+  {
+    "id": "num_9",
+    "char": "9",
+    "romajiOrPhonetic": "9",
+    "letterName": "きゅう",
+    "letterSound": "きゅう",
+    "phonicsSpokenText": "きゅう",
+    "exampleWord": "きゅうり",
+    "exampleTranslation": "9ほん",
+    "langCode": "ja-JP",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 74 52 C 74 38 72 24 54.5 20 C 40 20 34 32 34 42 C 34 54 44 60 56 60 C 68 60 74 54 74 48 L 74 52 C 74 70 66 86 42 90"
+      }
+    ]
+  }
+]
+  },
   english: {
     id: 'english',
     title: 'ABC えいご',
@@ -2600,6 +2786,532 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
       {
         "order": 1,
         "d": "M 34 20 L 76 20 L 34 88 L 78 88"
+      }
+    ]
+  }
+]
+  },
+  english_lower: {
+    id: 'english_lower',
+    title: 'abc えいご (こもじ)',
+    subtitle: 'Alphabet Lowercase (a-z 26もじ)',
+    langCode: 'en-US',
+    characters: [
+  {
+    "id": "en_lower_a",
+    "char": "a",
+    "romajiOrPhonetic": "/æ/",
+    "letterName": "a",
+    "letterSound": "/æ/",
+    "phonicsSpokenText": "ah",
+    "exampleWord": "Apple",
+    "exampleTranslation": "りんご",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 60 44 48 44 40 48 C 30 54 28 66 28 72 C 28 82 38 86 48 86 C 58 86 64 80 64 72"
+      },
+      {
+        "order": 2,
+        "d": "M 64 46 L 64 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_b",
+    "char": "b",
+    "romajiOrPhonetic": "/b/",
+    "letterName": "b",
+    "letterSound": "/b/",
+    "phonicsSpokenText": "buh",
+    "exampleWord": "Bear",
+    "exampleTranslation": "くま",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 18 L 32 86"
+      },
+      {
+        "order": 2,
+        "d": "M 32 54 C 42 44 66 44 72 54 C 78 64 76 78 68 84 C 58 88 42 88 32 84"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_c",
+    "char": "c",
+    "romajiOrPhonetic": "/k/",
+    "letterName": "c",
+    "letterSound": "/k/",
+    "phonicsSpokenText": "kuh",
+    "exampleWord": "Cat",
+    "exampleTranslation": "ねこ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 68 52 C 62 44 52 44 44 44 C 32 44 28 54 28 66 C 28 78 34 86 46 86 C 56 86 64 80 68 74"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_d",
+    "char": "d",
+    "romajiOrPhonetic": "/d/",
+    "letterName": "d",
+    "letterSound": "/d/",
+    "phonicsSpokenText": "duh",
+    "exampleWord": "Dog",
+    "exampleTranslation": "いぬ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 58 44 46 44 38 48 C 28 54 28 66 28 72 C 28 82 38 86 48 86 C 58 86 64 80 64 74"
+      },
+      {
+        "order": 2,
+        "d": "M 64 18 L 64 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_e",
+    "char": "e",
+    "romajiOrPhonetic": "/e/",
+    "letterName": "e",
+    "letterSound": "/e/",
+    "phonicsSpokenText": "eh",
+    "exampleWord": "Elephant",
+    "exampleTranslation": "ぞう",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 30 64 L 68 64 C 68 48 56 44 46 44 C 34 44 28 54 28 66 C 28 78 36 86 50 86 C 62 86 68 80 70 74"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_f",
+    "char": "f",
+    "romajiOrPhonetic": "/f/",
+    "letterName": "f",
+    "letterSound": "/f/",
+    "phonicsSpokenText": "fuh",
+    "exampleWord": "Fox",
+    "exampleTranslation": "きつね",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 22 C 58 18 50 18 48 26 L 48 86"
+      },
+      {
+        "order": 2,
+        "d": "M 34 48 L 62 48"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_g",
+    "char": "g",
+    "romajiOrPhonetic": "/ɡ/",
+    "letterName": "g",
+    "letterSound": "/ɡ/",
+    "phonicsSpokenText": "guh",
+    "exampleWord": "Gorilla",
+    "exampleTranslation": "ゴリラ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 58 44 46 44 38 48 C 28 54 28 66 28 72 C 28 82 38 86 48 86 C 58 86 64 80 64 74"
+      },
+      {
+        "order": 2,
+        "d": "M 64 46 L 64 94 C 64 104 50 106 38 100"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_h",
+    "char": "h",
+    "romajiOrPhonetic": "/h/",
+    "letterName": "h",
+    "letterSound": "/h/",
+    "phonicsSpokenText": "huh",
+    "exampleWord": "Hat",
+    "exampleTranslation": "ぼうし",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 18 L 32 86"
+      },
+      {
+        "order": 2,
+        "d": "M 32 54 C 40 44 58 44 64 52 C 68 58 68 68 68 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_i",
+    "char": "i",
+    "romajiOrPhonetic": "/ɪ/",
+    "letterName": "i",
+    "letterSound": "/ɪ/",
+    "phonicsSpokenText": "ih",
+    "exampleWord": "Igloo",
+    "exampleTranslation": "かまくら",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 52 46 L 52 86"
+      },
+      {
+        "order": 2,
+        "d": "M 52 28 L 52 30"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_j",
+    "char": "j",
+    "romajiOrPhonetic": "/dʒ/",
+    "letterName": "j",
+    "letterSound": "/dʒ/",
+    "phonicsSpokenText": "juh",
+    "exampleWord": "Jam",
+    "exampleTranslation": "ジャム",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 56 46 L 56 94 C 56 104 46 106 36 100"
+      },
+      {
+        "order": 2,
+        "d": "M 56 28 L 56 30"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_k",
+    "char": "k",
+    "romajiOrPhonetic": "/k/",
+    "letterName": "k",
+    "letterSound": "/k/",
+    "phonicsSpokenText": "kuh",
+    "exampleWord": "Kite",
+    "exampleTranslation": "たこ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 18 L 34 86"
+      },
+      {
+        "order": 2,
+        "d": "M 68 46 L 36 66"
+      },
+      {
+        "order": 3,
+        "d": "M 42 62 L 70 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_l",
+    "char": "l",
+    "romajiOrPhonetic": "/l/",
+    "letterName": "l",
+    "letterSound": "/l/",
+    "phonicsSpokenText": "luh",
+    "exampleWord": "Lion",
+    "exampleTranslation": "ライオン",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 52 18 L 52 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_m",
+    "char": "m",
+    "romajiOrPhonetic": "/m/",
+    "letterName": "m",
+    "letterSound": "/m/",
+    "phonicsSpokenText": "muh",
+    "exampleWord": "Monkey",
+    "exampleTranslation": "さる",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 24 46 L 24 86"
+      },
+      {
+        "order": 2,
+        "d": "M 24 54 C 32 44 44 44 48 52 L 48 86"
+      },
+      {
+        "order": 3,
+        "d": "M 48 54 C 56 44 68 44 74 52 L 74 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_n",
+    "char": "n",
+    "romajiOrPhonetic": "/n/",
+    "letterName": "n",
+    "letterSound": "/n/",
+    "phonicsSpokenText": "nuh",
+    "exampleWord": "Nut",
+    "exampleTranslation": "木の実",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 46 L 32 86"
+      },
+      {
+        "order": 2,
+        "d": "M 32 54 C 40 44 60 44 66 52 C 70 58 70 68 70 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_o",
+    "char": "o",
+    "romajiOrPhonetic": "/ɒ/",
+    "letterName": "o",
+    "letterSound": "/ɒ/",
+    "phonicsSpokenText": "ah",
+    "exampleWord": "Octopus",
+    "exampleTranslation": "タコ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 52 44 C 36 44 28 54 28 65 C 28 76 36 86 52 86 C 68 86 76 76 76 65 C 76 54 68 44 52 44 Z"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_p",
+    "char": "p",
+    "romajiOrPhonetic": "/p/",
+    "letterName": "p",
+    "letterSound": "/p/",
+    "phonicsSpokenText": "puh",
+    "exampleWord": "Panda",
+    "exampleTranslation": "パンダ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 46 L 32 104"
+      },
+      {
+        "order": 2,
+        "d": "M 32 54 C 42 44 66 44 72 54 C 78 64 76 78 68 84 C 58 88 42 88 32 84"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_q",
+    "char": "q",
+    "romajiOrPhonetic": "/kw/",
+    "letterName": "q",
+    "letterSound": "/kw/",
+    "phonicsSpokenText": "kwuh",
+    "exampleWord": "Queen",
+    "exampleTranslation": "女王",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 58 44 46 44 38 48 C 28 54 28 66 28 72 C 28 82 38 86 48 86 C 58 86 64 80 64 74"
+      },
+      {
+        "order": 2,
+        "d": "M 64 46 L 64 104 L 72 98"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_r",
+    "char": "r",
+    "romajiOrPhonetic": "/r/",
+    "letterName": "r",
+    "letterSound": "/r/",
+    "phonicsSpokenText": "ruh",
+    "exampleWord": "Rabbit",
+    "exampleTranslation": "うさぎ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 46 L 34 86"
+      },
+      {
+        "order": 2,
+        "d": "M 34 56 C 42 46 54 44 64 48"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_s",
+    "char": "s",
+    "romajiOrPhonetic": "/s/",
+    "letterName": "s",
+    "letterSound": "/s/",
+    "phonicsSpokenText": "suh",
+    "exampleWord": "Sun",
+    "exampleTranslation": "たいよう",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 58 44 44 44 38 48 C 30 54 36 62 48 66 C 62 70 68 76 66 82 C 62 88 44 88 34 82"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_t",
+    "char": "t",
+    "romajiOrPhonetic": "/t/",
+    "letterName": "t",
+    "letterSound": "/t/",
+    "phonicsSpokenText": "tuh",
+    "exampleWord": "Tiger",
+    "exampleTranslation": "トラ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 48 22 L 48 80 C 48 86 54 86 62 84"
+      },
+      {
+        "order": 2,
+        "d": "M 34 44 L 62 44"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_u",
+    "char": "u",
+    "romajiOrPhonetic": "/ʌ/",
+    "letterName": "u",
+    "letterSound": "/ʌ/",
+    "phonicsSpokenText": "uh",
+    "exampleWord": "Umbrella",
+    "exampleTranslation": "かさ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 46 L 32 74 C 32 84 42 86 50 86 C 58 86 64 82 64 72 L 64 46 L 64 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_v",
+    "char": "v",
+    "romajiOrPhonetic": "/v/",
+    "letterName": "v",
+    "letterSound": "/v/",
+    "phonicsSpokenText": "vuh",
+    "exampleWord": "Van",
+    "exampleTranslation": "くるま",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 46 L 52 86 L 72 46"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_w",
+    "char": "w",
+    "romajiOrPhonetic": "/w/",
+    "letterName": "w",
+    "letterSound": "/w/",
+    "phonicsSpokenText": "wuh",
+    "exampleWord": "Walrus",
+    "exampleTranslation": "セイウチ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 24 46 L 38 86 L 52 56 L 64 86 L 78 46"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_x",
+    "char": "x",
+    "romajiOrPhonetic": "/ks/",
+    "letterName": "x",
+    "letterSound": "/ks/",
+    "phonicsSpokenText": "ks",
+    "exampleWord": "Xylophone",
+    "exampleTranslation": "木琴",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 46 L 70 86"
+      },
+      {
+        "order": 2,
+        "d": "M 70 46 L 34 86"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_y",
+    "char": "y",
+    "romajiOrPhonetic": "/j/",
+    "letterName": "y",
+    "letterSound": "/j/",
+    "phonicsSpokenText": "yuh",
+    "exampleWord": "Yak",
+    "exampleTranslation": "ヤク",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 46 L 52 72"
+      },
+      {
+        "order": 2,
+        "d": "M 70 46 L 40 102"
+      }
+    ]
+  },
+  {
+    "id": "en_lower_z",
+    "char": "z",
+    "romajiOrPhonetic": "/z/",
+    "letterName": "z",
+    "letterSound": "/z/",
+    "phonicsSpokenText": "zuh",
+    "exampleWord": "Zebra",
+    "exampleTranslation": "シマウマ",
+    "langCode": "en-US",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 48 L 68 48 L 34 86 L 70 86"
       }
     ]
   }
@@ -3158,6 +3870,540 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
       {
         "order": 2,
         "d": "M 54 16 L 54 18"
+      }
+    ]
+  }
+]
+  },
+  polish_lower: {
+    id: 'polish_lower',
+    title: 'polski (こもじ)',
+    subtitle: 'Polski alfabet małe litery (26もじ)',
+    langCode: 'pl-PL',
+    characters: [
+  {
+    "id": "pl_lower_a",
+    "char": "a",
+    "romajiOrPhonetic": "[a]",
+    "letterName": "a",
+    "letterSound": "[a]",
+    "phonicsSpokenText": "a",
+    "exampleWord": "Ananas",
+    "exampleTranslation": "パイナップル",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 60 44 48 44 40 48 C 30 54 28 66 28 72 C 28 82 38 86 48 86 C 58 86 64 80 64 72"
+      },
+      {
+        "order": 2,
+        "d": "M 64 46 L 64 86"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_a_ogonek",
+    "char": "ą",
+    "romajiOrPhonetic": "[ɔ̃]",
+    "letterName": "ą",
+    "letterSound": "[ɔ̃]",
+    "phonicsSpokenText": "ą",
+    "exampleWord": "Wąż",
+    "exampleTranslation": "へび",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 60 44 48 44 40 48 C 30 54 28 66 28 72 C 28 82 38 86 48 86 C 58 86 64 80 64 72"
+      },
+      {
+        "order": 2,
+        "d": "M 64 46 L 64 86"
+      },
+      {
+        "order": 3,
+        "d": "M 64 84 C 66 94 74 98 78 94"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_b",
+    "char": "b",
+    "romajiOrPhonetic": "[b]",
+    "letterName": "b",
+    "letterSound": "[b]",
+    "phonicsSpokenText": "b",
+    "exampleWord": "Balon",
+    "exampleTranslation": "ふうせん",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 18 L 32 86"
+      },
+      {
+        "order": 2,
+        "d": "M 32 54 C 42 44 66 44 72 54 C 78 64 76 78 68 84 C 58 88 42 88 32 84"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_c",
+    "char": "c",
+    "romajiOrPhonetic": "[ts]",
+    "letterName": "c",
+    "letterSound": "[ts]",
+    "phonicsSpokenText": "ce",
+    "exampleWord": "Cytryna",
+    "exampleTranslation": "レモン",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 68 52 C 62 44 52 44 44 44 C 32 44 28 54 28 66 C 28 78 34 86 46 86 C 56 86 64 80 68 74"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_c_acute",
+    "char": "ć",
+    "romajiOrPhonetic": "[t͡ɕ]",
+    "letterName": "ć",
+    "letterSound": "[t͡ɕ]",
+    "phonicsSpokenText": "ć",
+    "exampleWord": "Ćma",
+    "exampleTranslation": "蛾 (が)",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 68 52 C 62 44 52 44 44 44 C 32 44 28 54 28 66 C 28 78 34 86 46 86 C 56 86 64 80 68 74"
+      },
+      {
+        "order": 2,
+        "d": "M 46 36 L 58 22"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_d",
+    "char": "d",
+    "romajiOrPhonetic": "[d]",
+    "letterName": "d",
+    "letterSound": "[d]",
+    "phonicsSpokenText": "de",
+    "exampleWord": "Dom",
+    "exampleTranslation": "いえ",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 58 44 46 44 38 48 C 28 54 28 66 28 72 C 28 82 38 86 48 86 C 58 86 64 80 64 74"
+      },
+      {
+        "order": 2,
+        "d": "M 64 18 L 64 86"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_e",
+    "char": "e",
+    "romajiOrPhonetic": "[ɛ]",
+    "letterName": "e",
+    "letterSound": "[ɛ]",
+    "phonicsSpokenText": "e",
+    "exampleWord": "Ekran",
+    "exampleTranslation": "がめん",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 30 64 L 68 64 C 68 48 56 44 46 44 C 34 44 28 54 28 66 C 28 78 36 86 50 86 C 62 86 68 80 70 74"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_e_ogonek",
+    "char": "ę",
+    "romajiOrPhonetic": "[ɛ̃]",
+    "letterName": "ę",
+    "letterSound": "[ɛ̃]",
+    "phonicsSpokenText": "ę",
+    "exampleWord": "Ręka",
+    "exampleTranslation": "手 (て)",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 30 64 L 68 64 C 68 48 56 44 46 44 C 34 44 28 54 28 66 C 28 78 36 86 50 86 C 62 86 68 80 70 74"
+      },
+      {
+        "order": 2,
+        "d": "M 50 86 C 54 96 64 98 68 94"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_g",
+    "char": "g",
+    "romajiOrPhonetic": "[ɡ]",
+    "letterName": "g",
+    "letterSound": "[ɡ]",
+    "phonicsSpokenText": "ge",
+    "exampleWord": "Gruszka",
+    "exampleTranslation": "洋梨 (ようなし)",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 58 44 46 44 38 48 C 28 54 28 66 28 72 C 28 82 38 86 48 86 C 58 86 64 80 64 74"
+      },
+      {
+        "order": 2,
+        "d": "M 64 46 L 64 94 C 64 104 50 106 38 100"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_k",
+    "char": "k",
+    "romajiOrPhonetic": "[k]",
+    "letterName": "k",
+    "letterSound": "[k]",
+    "phonicsSpokenText": "ka",
+    "exampleWord": "Kot",
+    "exampleTranslation": "ねこ",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 18 L 34 86"
+      },
+      {
+        "order": 2,
+        "d": "M 68 46 L 36 66"
+      },
+      {
+        "order": 3,
+        "d": "M 42 62 L 70 86"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_l",
+    "char": "l",
+    "romajiOrPhonetic": "[l]",
+    "letterName": "l",
+    "letterSound": "[l]",
+    "phonicsSpokenText": "el",
+    "exampleWord": "Lody",
+    "exampleTranslation": "アイス",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 52 18 L 52 86"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_l_stroke",
+    "char": "ł",
+    "romajiOrPhonetic": "[w]",
+    "letterName": "ł",
+    "letterSound": "[w]",
+    "phonicsSpokenText": "eł",
+    "exampleWord": "Łódź",
+    "exampleTranslation": "ボート",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 52 18 L 52 86"
+      },
+      {
+        "order": 2,
+        "d": "M 40 56 L 66 44"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_m",
+    "char": "m",
+    "romajiOrPhonetic": "[m]",
+    "letterName": "m",
+    "letterSound": "[m]",
+    "phonicsSpokenText": "em",
+    "exampleWord": "Motyl",
+    "exampleTranslation": "ちょうちょ",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 24 46 L 24 86"
+      },
+      {
+        "order": 2,
+        "d": "M 24 54 C 32 44 44 44 48 52 L 48 86"
+      },
+      {
+        "order": 3,
+        "d": "M 48 54 C 56 44 68 44 74 52 L 74 86"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_n",
+    "char": "n",
+    "romajiOrPhonetic": "[n]",
+    "letterName": "n",
+    "letterSound": "[n]",
+    "phonicsSpokenText": "en",
+    "exampleWord": "Noga",
+    "exampleTranslation": "あし",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 46 L 32 86"
+      },
+      {
+        "order": 2,
+        "d": "M 32 54 C 40 44 60 44 66 52 C 70 58 70 68 70 86"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_o",
+    "char": "o",
+    "romajiOrPhonetic": "[ɔ]",
+    "letterName": "o",
+    "letterSound": "[ɔ]",
+    "phonicsSpokenText": "o",
+    "exampleWord": "Oko",
+    "exampleTranslation": "目 (め)",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 52 44 C 36 44 28 54 28 65 C 28 76 36 86 52 86 C 68 86 76 76 76 65 C 76 54 68 44 52 44 Z"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_o_acute",
+    "char": "ó",
+    "romajiOrPhonetic": "[u]",
+    "letterName": "ó",
+    "letterSound": "[u]",
+    "phonicsSpokenText": "u",
+    "exampleWord": "Ogród",
+    "exampleTranslation": "庭 (にわ)",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 52 44 C 36 44 28 54 28 65 C 28 76 36 86 52 86 C 68 86 76 76 76 65 C 76 54 68 44 52 44 Z"
+      },
+      {
+        "order": 2,
+        "d": "M 46 36 L 58 22"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_p",
+    "char": "p",
+    "romajiOrPhonetic": "[p]",
+    "letterName": "p",
+    "letterSound": "[p]",
+    "phonicsSpokenText": "pe",
+    "exampleWord": "Pies",
+    "exampleTranslation": "いぬ",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 46 L 32 104"
+      },
+      {
+        "order": 2,
+        "d": "M 32 54 C 42 44 66 44 72 54 C 78 64 76 78 68 84 C 58 88 42 88 32 84"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_r",
+    "char": "r",
+    "romajiOrPhonetic": "[r]",
+    "letterName": "r",
+    "letterSound": "[r]",
+    "phonicsSpokenText": "er",
+    "exampleWord": "Rower",
+    "exampleTranslation": "自転車",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 46 L 34 86"
+      },
+      {
+        "order": 2,
+        "d": "M 34 56 C 42 46 54 44 64 48"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_s",
+    "char": "s",
+    "romajiOrPhonetic": "[s]",
+    "letterName": "s",
+    "letterSound": "[s]",
+    "phonicsSpokenText": "es",
+    "exampleWord": "Słońce",
+    "exampleTranslation": "たいよう",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 58 44 44 44 38 48 C 30 54 36 62 48 66 C 62 70 68 76 66 82 C 62 88 44 88 34 82"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_s_acute",
+    "char": "ś",
+    "romajiOrPhonetic": "[ɕ]",
+    "letterName": "ś",
+    "letterSound": "[ɕ]",
+    "phonicsSpokenText": "ś",
+    "exampleWord": "Ślimak",
+    "exampleTranslation": "かたつむり",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 64 52 C 58 44 44 44 38 48 C 30 54 36 62 48 66 C 62 70 68 76 66 82 C 62 88 44 88 34 82"
+      },
+      {
+        "order": 2,
+        "d": "M 46 36 L 58 22"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_t",
+    "char": "t",
+    "romajiOrPhonetic": "[t]",
+    "letterName": "t",
+    "letterSound": "[t]",
+    "phonicsSpokenText": "te",
+    "exampleWord": "Tort",
+    "exampleTranslation": "ケーキ",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 48 22 L 48 80 C 48 86 54 86 62 84"
+      },
+      {
+        "order": 2,
+        "d": "M 34 44 L 62 44"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_u",
+    "char": "u",
+    "romajiOrPhonetic": "[u]",
+    "letterName": "u",
+    "letterSound": "[u]",
+    "phonicsSpokenText": "u",
+    "exampleWord": "Ucho",
+    "exampleTranslation": "耳 (みみ)",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 32 46 L 32 74 C 32 84 42 86 50 86 C 58 86 64 82 64 72 L 64 46 L 64 86"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_w",
+    "char": "w",
+    "romajiOrPhonetic": "[v]",
+    "letterName": "w",
+    "letterSound": "[v]",
+    "phonicsSpokenText": "wu",
+    "exampleWord": "Woda",
+    "exampleTranslation": "水 (みず)",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 24 46 L 38 86 L 52 56 L 64 86 L 78 46"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_z",
+    "char": "z",
+    "romajiOrPhonetic": "[z]",
+    "letterName": "z",
+    "letterSound": "[z]",
+    "phonicsSpokenText": "zet",
+    "exampleWord": "Zebra",
+    "exampleTranslation": "シマウマ",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 48 L 68 48 L 34 86 L 70 86"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_z_acute",
+    "char": "ź",
+    "romajiOrPhonetic": "[ʑ]",
+    "letterName": "ź",
+    "letterSound": "[ʑ]",
+    "phonicsSpokenText": "ź",
+    "exampleWord": "Źrebak",
+    "exampleTranslation": "子馬 (こうま)",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 48 L 68 48 L 34 86 L 70 86"
+      },
+      {
+        "order": 2,
+        "d": "M 46 36 L 58 22"
+      }
+    ]
+  },
+  {
+    "id": "pl_lower_z_dot",
+    "char": "ż",
+    "romajiOrPhonetic": "[ʐ]",
+    "letterName": "ż",
+    "letterSound": "[ʐ]",
+    "phonicsSpokenText": "że",
+    "exampleWord": "Żyrafa",
+    "exampleTranslation": "キリン",
+    "langCode": "pl-PL",
+    "strokes": [
+      {
+        "order": 1,
+        "d": "M 34 48 L 68 48 L 34 86 L 70 86"
+      },
+      {
+        "order": 2,
+        "d": "M 52 30 L 52 32"
       }
     ]
   }

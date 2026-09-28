@@ -1,4 +1,11 @@
-export type LanguageType = 'hiragana' | 'katakana' | 'english' | 'polish';
+export type LanguageType =
+  | 'hiragana'
+  | 'katakana'
+  | 'numbers'
+  | 'english'
+  | 'english_lower'
+  | 'polish'
+  | 'polish_lower';
 
 export interface StrokeData {
   order: number;

@@ -187,22 +187,24 @@ class SpeechEngine {
     }
 
     // Check if authentic Polish pre-recorded audio is available
-    if (item.langCode === 'pl-PL' && item.id.startsWith('pl_')) {
-      const url = `/audio/polish/${item.id}_${part}.mp3`;
+    if (item.langCode === 'pl-PL' && (item.id.startsWith('pl_') || item.id.startsWith('pl_lower_'))) {
+      const baseId = item.id.replace('pl_lower_', 'pl_');
+      const url = `/audio/polish/${baseId}_${part}.mp3`;
       this.playAudioFile(url, onEnd);
       return;
     }
 
     // Check if authentic English pre-recorded audio is available
-    if (item.langCode === 'en-US' && item.id.startsWith('en_')) {
-      const url = `/audio/english/${item.id}_${part}.mp3`;
+    if (item.langCode === 'en-US' && (item.id.startsWith('en_') || item.id.startsWith('en_lower_'))) {
+      const baseId = item.id.replace('en_lower_', 'en_');
+      const url = `/audio/english/${baseId}_${part}.mp3`;
       this.playAudioFile(url, onEnd);
       return;
     }
 
     // Default Web Speech synthesis
     if (part === 'name') {
-      this.speak(item.char, item.langCode, onEnd);
+      this.speak(item.letterName || item.char, item.langCode, onEnd);
     } else if (part === 'sound') {
       const soundText = item.phonicsSpokenText || item.letterSound || item.char;
       this.speak(soundText, item.langCode, onEnd, 0.78);
@@ -225,15 +227,16 @@ class SpeechEngine {
     this.cancel();
 
     // Polish: play authentic native pre-recorded sequence
-    if (item.langCode === 'pl-PL' && item.id.startsWith('pl_')) {
+    if (item.langCode === 'pl-PL' && (item.id.startsWith('pl_') || item.id.startsWith('pl_lower_'))) {
+      const baseId = item.id.replace('pl_lower_', 'pl_');
       if (onStepChange) onStepChange('name');
-      this.playAudioFile(`/audio/polish/${item.id}_name.mp3`, () => {
+      this.playAudioFile(`/audio/polish/${baseId}_name.mp3`, () => {
         this.activeChainTimeout = window.setTimeout(() => {
           if (onStepChange) onStepChange('sound');
-          this.playAudioFile(`/audio/polish/${item.id}_sound.mp3`, () => {
+          this.playAudioFile(`/audio/polish/${baseId}_sound.mp3`, () => {
             this.activeChainTimeout = window.setTimeout(() => {
               if (onStepChange) onStepChange('word');
-              this.playAudioFile(`/audio/polish/${item.id}_word.mp3`, () => {
+              this.playAudioFile(`/audio/polish/${baseId}_word.mp3`, () => {
                 if (onStepChange) onStepChange(null);
                 if (onComplete) onComplete();
               });
@@ -245,15 +248,16 @@ class SpeechEngine {
     }
 
     // English: play authentic native pre-recorded sequence
-    if (item.langCode === 'en-US' && item.id.startsWith('en_')) {
+    if (item.langCode === 'en-US' && (item.id.startsWith('en_') || item.id.startsWith('en_lower_'))) {
+      const baseId = item.id.replace('en_lower_', 'en_');
       if (onStepChange) onStepChange('name');
-      this.playAudioFile(`/audio/english/${item.id}_name.mp3`, () => {
+      this.playAudioFile(`/audio/english/${baseId}_name.mp3`, () => {
         this.activeChainTimeout = window.setTimeout(() => {
           if (onStepChange) onStepChange('sound');
-          this.playAudioFile(`/audio/english/${item.id}_sound.mp3`, () => {
+          this.playAudioFile(`/audio/english/${baseId}_sound.mp3`, () => {
             this.activeChainTimeout = window.setTimeout(() => {
               if (onStepChange) onStepChange('word');
-              this.playAudioFile(`/audio/english/${item.id}_word.mp3`, () => {
+              this.playAudioFile(`/audio/english/${baseId}_word.mp3`, () => {
                 if (onStepChange) onStepChange(null);
                 if (onComplete) onComplete();
               });
@@ -279,9 +283,9 @@ class SpeechEngine {
           }, 350);
         });
       } else {
-        // Fallback: Web Speech API for unknown IDs
+        // Fallback / Numbers: Web Speech API
         if (onStepChange) onStepChange('name');
-        this.speak(item.char, item.langCode, () => {
+        this.speak(item.letterName || item.char, item.langCode, () => {
           this.activeChainTimeout = window.setTimeout(() => {
             if (onStepChange) onStepChange('word');
             this.speak(item.exampleWord, item.langCode, () => {
