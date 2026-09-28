@@ -1,0 +1,67 @@
+# mojimoji (もじもじ) — Kids Multilingual Character Learning PWA
+
+An anti-AI, artisanal multilingual writing and listening learning app designed for 6-year-olds.
+Supports Japanese Hiragana/Katakana, English Alphabet, and Polish Alphabet with zero-stress multi-device sync.
+
+---
+
+## 1. Core Architecture & Tech Stack
+- **Framework**: React 19 + TypeScript + Vite 6
+- **Styling**: Vanilla CSS Modules & CSS Design System (Warm Nordic toy palette `#FAF8F5`, terracotta, sage, mustard, deep navy).
+- **Stroke Engine**: SVG Path vector definitions with `stroke-dashoffset` stroke-order animation + Canvas 2D touch tracer.
+- **Audio Engine**: Web Audio API synthesized organic marimba/glockenspiel SE + Web Speech API multi-language TTS (`ja-JP`, `en-US`, `pl-PL`).
+- **Data Persistence & Sync**: Local-first IndexedDB/LocalStorage with Family Passcode (合言葉) & QR Code cloud sync adapter.
+- **PWA**: Mobile touch-optimized, standalone display, responsive for iPad, iPhone, and Android.
+
+---
+
+## 2. Directory Structure
+```
+mojimoji/
+├── public/              # PWA manifest, service worker, touch icons
+├── src/
+│   ├── data/            # Character sets (Hiragana, Katakana, English, Polish)
+│   ├── types/           # Type definitions for character sets & sync
+│   ├── sound/           # Web Audio API marimba/glockenspiel synthesizer
+│   ├── speech/          # Web Speech API TTS helper
+│   ├── components/
+│   │   ├── Navigation/  # Top bar, back button, audio toggles
+│   │   ├── Home/        # Category selector (Hiragana, Katakana, EN, PL) & Mode
+│   │   ├── Tracer/      # Stroke animation & Finger trace canvas
+│   │   ├── Quiz/        # Listening & visual quiz mode
+│   │   ├── StickerBook/ # Interactive sticker board with drag & drop
+│   │   └── SyncModal/   # Family passcode & QR code multi-device sync
+│   ├── App.tsx          # Router & state manager
+│   ├── main.tsx         # Entry point
+│   └── index.css        # Clean anti-AI design system tokens
+```
+
+---
+
+## 3. Anti-AI Design Mandate
+- **No Neon/Glows**: Calm natural paper `#FAF8F5`, soft clay cards `#FFFFFF`, terracotta `#D96B43`, sage `#5A826D`, mustard `#E2A03F`.
+- **No OS Emoji Clutter**: Minimalist 1.5px stroke vector icons (Lucide) and custom SVG child-friendly illustrations.
+- **Restrained Radiuses**: 12px–16px subtle tactile curvature for cards; no oversized pill blobs.
+- **Target Audience UX (6 Years Old)**: Large legible typography, hiragana chrome, high tactile responsiveness, celebratory sound feedback.
+
+---
+
+## 4. Verification Loop
+1. `npm run build`: Verify TypeScript compilation and Vite bundling with zero errors.
+2. `npm run dev`: Launch local server, verify in browser with console check.
+3. Sensory test: Touch/mouse tracing, audio playback, test quiz, sticker placement, sync code generation.
+
+---
+
+## 5. Changelog
+- **2026-09-28**: Initial release of mojimoji PWA. Hiragana, Katakana, English, and Polish character sets, stroke-order animator, tracer canvas, listening test, sticker book, and family passcode sync.
+- **2026-09-28 (Fix)**: Replaced imprecise manual stroke approximations with official KanjiVG (Japanese educational standard CC BY-SA 3.0) stroke vectors for Hiragana/Katakana and geometric typographies for English/Polish. SVG viewBox standardized to 109x109.
+- **2026-09-28 (Fix)**: Resolved stroke animation multiple starting point glitch on long paths (あ, え, お) by applying SVG 2 `pathLength="1"` normalization with `stroke-dasharray: 1` and `stroke-dashoffset: 1 -> 0`. Each stroke now animates as a single continuous pen trail.
+- **2026-09-28 (Feature & Audio Fix)**: Expanded full character sets to 46 Hiragana, 46 Katakana, 26 English (A-Z with Jolly Phonics), and 26 Polish characters. Solved Polish pronunciation failure (caused by OS lacking pl-PL TTS voice packs) by bundling authentic native Polish MP3 audio for all letter names, phonemes (głoski), and vocabulary words in `/audio/polish/`.
+- **2026-09-28 (UX & Pedagogical Fix)**: Updated B (EN/PL) to authentic 2-stroke standard (Frog Jump Capital: Big line down -> jump to top -> continuous double curve) per Handwriting Without Tears. Added SVG numbered start markers (①, ②) and a flexible child-friendly 「できた！」 action button so 6yo learners are never blocked by rigid finger-lift counts.
+- **2026-09-28 (Typography & UX Fix)**: Corrected Polish Ogonek (tail) orientation on Ą and Ę to curve rightward as required by authentic Polish handwriting. Resolved start-marker visual overlap (e.g. apex of A where stroke 1 & 2 meet) by displaying the current active stroke with a pulsing ring and suppressing overlapping future badges until active.
+- **2026-09-28 (Pedagogy & Anti-Bias Fix)**: Completely removed Japanese Katakana reading/pronunciation approximations for foreign languages (English & Polish) across all cards, datasets, and buttons to prevent Katakana accent habituation in 6yo learners. Learning is conducted purely through high-fidelity native auditory listening, displaying only the pure letter name (e.g., `A`, `Ó`), pure phoneme symbol (`/æ/`, `[u]`), and word meaning (`りんご`, `庭 (にわ)`).
+- **2026-09-28 (Audio - Japanese Natural Voice)**: Replaced Web Speech API (OS TTS) for Japanese Hiragana/Katakana with pre-recorded Google TTS MP3s. Downloaded 184 files (46 Hiragana + 46 Katakana × 2 parts: char + word) to `/audio/japanese/`. `tts.ts` now resolves `hira_*`/`kata_*` IDs to `ja_hira_*`/`ja_kata_*` audio paths with automatic Web Speech fallback on MP3 error.
+- **2026-09-29 (Fix - KanjiVG Authentic Stroke Data)**: Downloaded and verified 100% authentic KanjiVG SVG stroke vectors from GitHub for all 46 Hiragana and 46 Katakana (eliminating previously corrupted/approximated paths like 3-stroke う and 4-stroke え). Updated `src/data/characters.ts` so all kana now have authentic stroke counts (う: 2画, え: 2画, etc.) and stroke paths matching the 109x109 viewBox standard.
+- **2026-09-29 (UX - Practice Completion on Final Character)**: Replaced disabled 「つぎの もじ」 on the final character (46/46 or 26/26) with an interactive 「おわる」 action button and 「れんしゅうを おわる」 modal button with celebratory audio and clean navigation return to the category home screen.
+
