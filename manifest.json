@@ -1,0 +1,17 @@
+{
+  "name": "mojimoji もじもじ",
+  "short_name": "mojimoji",
+  "description": "6歳からの楽しい多言語文字学習アプリ (ひらがな・カタカナ・えいご・ポーランド語)",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F5",
+  "theme_color": "#FAF8F5",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
