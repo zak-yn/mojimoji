@@ -102,7 +102,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
               }}
             >
               <Shuffle size={17} strokeWidth={2.2} />
-              <span>まぜこぜ (ランダム)</span>
+              <span>まぜこぜ</span>
             </button>
           </div>
         </div>

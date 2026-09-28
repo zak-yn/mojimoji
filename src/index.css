@@ -142,6 +142,7 @@ button:active {
   background-color: var(--bg-muted);
   color: var(--text-main);
   border: 1px solid var(--border-subtle);
+  white-space: nowrap;
 }
 
 .nav-btn:hover {
@@ -245,6 +246,7 @@ button:active {
   background-color: var(--bg-muted);
   color: var(--text-muted);
   border: 1px solid var(--border-subtle);
+  white-space: nowrap;
 }
 
 .mode-pill-btn.active {
@@ -700,6 +702,7 @@ button:active {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .stroke-count-pills {
@@ -796,6 +799,7 @@ button:active {
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.15s ease, background-color 0.15s ease;
+  white-space: nowrap;
 }
 
 .nav-page-btn:hover:not(:disabled) {
@@ -1562,18 +1566,231 @@ button:active {
   to { transform: rotate(360deg); }
 }
 
-/* Responsive Rules for iPad / Mobile */
+/* Responsive Rules for iPad / Mobile (Pixel, iPhone, Galaxy) */
+.btn-label-mobile {
+  display: none;
+}
+.btn-label-desktop {
+  display: inline;
+}
+
 @media (max-width: 640px) {
   .btn-label-mobile-hide {
-    display: none;
+    display: none !important;
+  }
+
+  .btn-label-desktop {
+    display: none !important;
+  }
+
+  .btn-label-mobile {
+    display: inline !important;
   }
 
   .main-content {
-    padding: 12px 14px 24px;
+    padding: 10px 12px 24px;
+  }
+
+  .navbar-container {
+    padding: 8px 12px;
+  }
+
+  .logo-sub {
+    display: none;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    gap: 4px;
+  }
+
+  .badge-count {
+    padding: 2px 6px;
+    font-size: 0.72rem;
+  }
+
+  .welcome-banner {
+    padding: 16px 14px;
+    gap: 12px;
+  }
+
+  .welcome-title {
+    font-size: 1.15rem;
+  }
+
+  .welcome-desc {
+    font-size: 0.82rem;
+  }
+
+  .mode-toggle-card {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .mode-toggle-label {
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .mode-buttons-group {
+    display: flex;
+    gap: 6px;
+  }
+
+  .mode-pill-btn {
+    padding: 6px 10px;
+    font-size: 0.82rem;
   }
 
   .category-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .category-card {
+    padding: 16px;
+  }
+
+  /* Stroke Tracer Mobile Optimization */
+  .tracer-root {
+    gap: 10px;
+  }
+
+  .tracer-header {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .tracer-sub-btn {
+    padding: 6px 8px;
+    font-size: 0.82rem;
+    gap: 4px;
+  }
+
+  .char-badge-info {
+    gap: 6px;
+  }
+
+  .char-position {
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .char-phonetic {
+    font-size: 0.95rem;
+    padding: 2px 6px;
+    white-space: nowrap;
+  }
+
+  .tracer-header-actions {
+    gap: 5px;
+  }
+
+  .phonics-chain-strip {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .phonics-pill {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 6px;
+    gap: 2px;
+  }
+
+  .phonics-pill-tag {
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
+
+  .phonics-pill-val {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .phonics-pill-trans {
+    display: none;
+  }
+
+  .tracer-stage {
+    max-width: min(84vw, 340px);
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-md);
+  }
+
+  .tracer-stroke-dock {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .stroke-count-indicator {
+    gap: 6px;
+  }
+
+  .stroke-count-label {
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .stroke-count-pills {
+    gap: 4px;
+  }
+
+  .stroke-dot-pill {
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+  }
+
+  .btn-finish-drawing {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .tracer-bottom-nav {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .nav-page-btn {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    gap: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .tracer-example-word {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .tracer-example-word .word-label {
+    display: none;
+  }
+
+  .tracer-example-word .word-text {
+    font-size: 0.92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .quiz-options-grid {
@@ -1583,8 +1800,15 @@ button:active {
   .opt-char {
     font-size: 2.6rem;
   }
+}
 
-  .welcome-banner {
-    padding: 18px 20px;
+@media (max-width: 380px) {
+  .tracer-stage {
+    max-width: min(86vw, 300px);
+  }
+
+  .nav-page-btn {
+    padding: 7px 9px;
+    font-size: 0.78rem;
   }
 }

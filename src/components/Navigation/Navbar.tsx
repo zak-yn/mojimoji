@@ -63,8 +63,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={handleStickersClick}
             aria-label="シールちょう"
           >
-            <Sparkles size={20} strokeWidth={2.2} className="icon-sparkle" />
-            <span className="btn-label">シールちょう</span>
+            <Sparkles size={18} strokeWidth={2.2} className="icon-sparkle" />
+            <span className="btn-label btn-label-desktop">シールちょう</span>
+            <span className="btn-label btn-label-mobile">シール</span>
             <span className="badge-count">{stickerCount}</span>
           </button>
 
