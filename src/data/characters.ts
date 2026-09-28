@@ -2074,78 +2074,98 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
         "char": "0",
         "romajiOrPhonetic": "0",
         "letterName": "ぜろ",
-        "letterSound": "ぜろ",
+        "letterSound": "zero",
         "phonicsSpokenText": "ぜろ",
-        "exampleWord": "ぜろ",
-        "exampleTranslation": "0",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
             "order": 1,
             "d": "M54.89,15.5c-10.26,0-27.89,8.82-27.89,38.15c0,29.33,15.46,38.58,28.32,38.58c12.86,0,27.6-10.69,27.6-38.73c0.01-28.03-15.02-38-28.03-38"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "ぜろ",
+          "en": "zero",
+          "pl": "zero"
+        }
       },
       {
         "id": "num_1",
         "char": "1",
         "romajiOrPhonetic": "1",
         "letterName": "いち",
-        "letterSound": "いち",
+        "letterSound": "one",
         "phonicsSpokenText": "いち",
-        "exampleWord": "いちご",
-        "exampleTranslation": "1こ",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
             "order": 1,
             "d": "M40.5,31.97c6.5-2.02,17.3-9.54,20.63-16.47c0,11.71,0,71.27,0,77.34"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "いち",
+          "en": "one",
+          "pl": "jeden"
+        }
       },
       {
         "id": "num_2",
         "char": "2",
         "romajiOrPhonetic": "2",
         "letterName": "に",
-        "letterSound": "に",
+        "letterSound": "two",
         "phonicsSpokenText": "に",
-        "exampleWord": "にじ",
-        "exampleTranslation": "2ほん",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
             "order": 1,
             "d": "M30.51,35.83c2.93-14.12,14.92-20.05,25.33-20.05c13.87,0,25.18,5.64,25.18,19.06c0,14.74-6.25,22.99-53.52,55.89c12.28,0,49.25,0,56.05,0"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "に",
+          "en": "two",
+          "pl": "dwa"
+        }
       },
       {
         "id": "num_3",
         "char": "3",
         "romajiOrPhonetic": "3",
         "letterName": "さん",
-        "letterSound": "さん",
+        "letterSound": "three",
         "phonicsSpokenText": "さん",
-        "exampleWord": "さんかく",
-        "exampleTranslation": "3かく",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
             "order": 1,
             "d": "M32.23,28.07c3.61-7.23,13.73-12.39,23.37-12.39c15.36,0,23.16,6.78,23.16,15.88c0,8.96-3.61,18.61-22.98,18.33c-6.44-0.1-6.37,0.27,0,0c20.81-0.87,27.46,8.53,27.46,20.81c0,11.99-12.86,21.68-26.73,21.68c-13.87,0-24.38-5.67-29.01-13.18"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "さん",
+          "en": "three",
+          "pl": "trzy"
+        }
       },
       {
         "id": "num_4",
         "char": "4",
         "romajiOrPhonetic": "4",
         "letterName": "よん",
-        "letterSound": "よん",
+        "letterSound": "four",
         "phonicsSpokenText": "よん",
-        "exampleWord": "よつば",
-        "exampleTranslation": "4つ",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
@@ -2156,17 +2176,22 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
             "order": 2,
             "d": "M66.55,47.33c0,7.23,0,38.76,0,45.11"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "よん",
+          "en": "four",
+          "pl": "cztery"
+        }
       },
       {
         "id": "num_5",
         "char": "5",
         "romajiOrPhonetic": "5",
         "letterName": "ご",
-        "letterSound": "ご",
+        "letterSound": "five",
         "phonicsSpokenText": "ご",
-        "exampleWord": "ごえんだま",
-        "exampleTranslation": "5えん",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
@@ -2177,75 +2202,100 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
             "order": 2,
             "d": "M34.49,16.94c4.62,0,39.08,0,45.58,0"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "ご",
+          "en": "five",
+          "pl": "pięć"
+        }
       },
       {
         "id": "num_6",
         "char": "6",
         "romajiOrPhonetic": "6",
         "letterName": "ろく",
-        "letterSound": "ろく",
+        "letterSound": "six",
         "phonicsSpokenText": "ろく",
-        "exampleWord": "ろーそく",
-        "exampleTranslation": "6ぽん",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
             "order": 1,
             "d": "M67.87,15.79c-14.6,9.39-38.87,23.99-38.87,53.61c0,15.14,14.02,23.02,27.86,23.02c15.17,0,26.9-8.48,26.9-25.4c0-14.93-11.47-23.92-26.15-23.92c-17.05,0-28.61,10.26-28.61,26.3"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "ろく",
+          "en": "six",
+          "pl": "sześć"
+        }
       },
       {
         "id": "num_7",
         "char": "7",
         "romajiOrPhonetic": "7",
         "letterName": "なな",
-        "letterSound": "なな",
+        "letterSound": "seven",
         "phonicsSpokenText": "なな",
-        "exampleWord": "ななほしてんとう",
-        "exampleTranslation": "7つ星",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
             "order": 1,
             "d": "M26.61,17.15c5.35,0,46.48,0,53.71,0c-8.09,18.36-29.36,67.56-32.54,75.5"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "なな",
+          "en": "seven",
+          "pl": "siedem"
+        }
       },
       {
         "id": "num_8",
         "char": "8",
         "romajiOrPhonetic": "8",
         "letterName": "はち",
-        "letterSound": "はち",
+        "letterSound": "eight",
         "phonicsSpokenText": "はち",
-        "exampleWord": "はち",
-        "exampleTranslation": "8ほんあし",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
             "order": 1,
             "d": "M54.5,18 C42,18 34,26 34,36 C34,46 44,52 54.5,56 C66,60 76,66 76,77 C76,87 66,92 54.5,92 C42,92 32,87 32,77 C32,66 43,60 54.5,56 C65,52 75,46 75,36 C75,26 67,18 54.5,18"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "はち",
+          "en": "eight",
+          "pl": "osiem"
+        }
       },
       {
         "id": "num_9",
         "char": "9",
         "romajiOrPhonetic": "9",
         "letterName": "きゅう",
-        "letterSound": "きゅう",
+        "letterSound": "nine",
         "phonicsSpokenText": "きゅう",
-        "exampleWord": "きゅうり",
-        "exampleTranslation": "9ほん",
+        "exampleWord": "",
+        "exampleTranslation": "",
         "langCode": "ja-JP",
         "strokes": [
           {
             "order": 1,
             "d": "M77.1,31.68c0.72-7.08-1.59-16.47-16.91-16.47c-15.32,0-35.69,12.14-35.69,30.49c0,11.13,10.8,14.63,16.44,14.63c5.64,0,26.81-3.31,34.65-23.31c2.89-7.37,8.98-19.31,3.32-5.2c-8.17,20.38-20.12,48.94-24.74,60.79"
           }
-        ]
+        ],
+        "numberReadings": {
+          "ja": "きゅう",
+          "en": "nine",
+          "pl": "dziewięć"
+        }
       }
     ]
   },

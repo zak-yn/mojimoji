@@ -20,9 +20,14 @@ export interface CharacterItem {
   letterName: string;      // Name: 'エイ', 'ビー', 'エウ(Ł)'
   letterSound: string;     // Sound: '/æ/ (アッ)', '/b/ (ブッ)', '/w/ (ウ)'
   phonicsSpokenText?: string; // Text for TTS phonics pronunciation
-  exampleWord: string;     // 'Apple', 'Łódź', 'あさがお'
+  exampleWord: string;     // 'Apple', 'Łódź', 'あさがお' (empty for numbers)
   exampleTranslation?: string; // 'りんご', 'ボート', '朝顔'
   langCode: string;        // 'ja-JP', 'en-US', 'pl-PL'
+  numberReadings?: {
+    ja: string;            // 'いち', 'に', ...
+    en: string;            // 'one', 'two', ...
+    pl: string;            // 'jeden', 'dwa', ...
+  };
   strokes: StrokeData[];
   guidePoints?: { x: number; y: number }[];
 }

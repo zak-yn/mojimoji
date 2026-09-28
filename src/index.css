@@ -909,6 +909,39 @@ button:active {
   font-weight: 800;
 }
 
+.tracer-number-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.num-chip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.num-chip-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.num-chip-val {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.num-chip-sep {
+  color: var(--text-muted);
+  opacity: 0.4;
+  font-size: 0.75rem;
+}
+
 /* Tracer Footer */
 .tracer-footer {
   display: flex;
@@ -1948,6 +1981,24 @@ button:active {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .tracer-number-strip {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .tracer-number-strip .num-chip-label {
+    font-size: 0.65rem;
+    padding: 0px 3px;
+  }
+
+  .tracer-number-strip .num-chip-val {
+    font-size: 0.85rem;
   }
 
   /* Quiz Mode Mobile Optimization */

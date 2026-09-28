@@ -145,9 +145,26 @@ class SpeechEngine {
 
   /**
    * Play a specific phonics part ('name' | 'sound' | 'word') for a character
+   * For numbers: 'name' = Japanese, 'sound' = English, 'word' = Polish
    */
   public speakPart(item: CharacterItem, part: 'name' | 'sound' | 'word', onEnd?: () => void) {
     this.cancel();
+
+    // Numbers (0-9): Multilingual readings (JA, EN, PL)
+    if (item.id.startsWith('num_')) {
+      const langMap: Record<'name' | 'sound' | 'word', { lang: 'ja' | 'en' | 'pl'; code: string; text: string }> = {
+        name:  { lang: 'ja', code: 'ja-JP', text: item.numberReadings?.ja || item.letterName || item.char },
+        sound: { lang: 'en', code: 'en-US', text: item.numberReadings?.en || 'one' },
+        word:  { lang: 'pl', code: 'pl-PL', text: item.numberReadings?.pl || 'jeden' }
+      };
+      const target = langMap[part];
+      const url = `/audio/numbers/${item.id}_${target.lang}.mp3`;
+      const played = this.playAudioFile(url, onEnd);
+      if (!played) {
+        this.speak(target.text, target.code, onEnd);
+      }
+      return;
+    }
 
     // Japanese (Hiragana/Katakana): prefer pre-recorded MP3, fall back to Web Speech
     if (item.langCode.startsWith('ja')) {
@@ -214,10 +231,10 @@ class SpeechEngine {
   }
 
   /**
-   * 3-Step Phonics Rhythm Chain:
-   * 1. Letter Name  (e.g., "A", "be")
-   * 2. Letter Sound (e.g., "/æ/ (ah)", "[b] (by)")
-   * 3. Anchor Word  (e.g., "Apple", "Balon")
+   * 3-Step Phonics / Multilingual Rhythm Chain:
+   * 1. Letter Name / 日本語 (JA)
+   * 2. Letter Sound / English (EN)
+   * 3. Anchor Word / Polski (PL)
    */
   public speakPhonicsChain(
     item: CharacterItem,
@@ -225,6 +242,26 @@ class SpeechEngine {
     onComplete?: () => void
   ) {
     this.cancel();
+
+    // Numbers: 3-language sequence (Japanese -> English -> Polish)
+    if (item.id.startsWith('num_')) {
+      if (onStepChange) onStepChange('name');
+      this.playAudioFile(`/audio/numbers/${item.id}_ja.mp3`, () => {
+        this.activeChainTimeout = window.setTimeout(() => {
+          if (onStepChange) onStepChange('sound');
+          this.playAudioFile(`/audio/numbers/${item.id}_en.mp3`, () => {
+            this.activeChainTimeout = window.setTimeout(() => {
+              if (onStepChange) onStepChange('word');
+              this.playAudioFile(`/audio/numbers/${item.id}_pl.mp3`, () => {
+                if (onStepChange) onStepChange(null);
+                if (onComplete) onComplete();
+              });
+            }, 350);
+          });
+        }, 350);
+      });
+      return;
+    }
 
     // Polish: play authentic native pre-recorded sequence
     if (item.langCode === 'pl-PL' && (item.id.startsWith('pl_') || item.id.startsWith('pl_lower_'))) {

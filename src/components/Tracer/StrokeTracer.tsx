@@ -425,6 +425,8 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
     }
   };
 
+  const isNumber = currentChar.id.startsWith('num_');
+
   return (
     <div className="tracer-root">
       {/* Top action header */}
@@ -449,7 +451,7 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
               sound.playTap();
               playPhonicsChain();
             }}
-            title="3拍子の発音をきく"
+            title={isNumber ? "3つのことば（日・英・波）できく" : "3拍子の発音をきく"}
           >
             <Volume2 size={19} strokeWidth={2.2} />
           </button>
@@ -491,47 +493,81 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
         </div>
       </div>
 
-      {/* Phonics 3-Step Rhythm Explorer (Name -> Sound -> Word) */}
-      <div className="phonics-chain-strip">
-        <button
-          id="btn-phonics-name"
-          className={`phonics-pill ${activePhonicsStep === 'name' ? 'active-step' : ''}`}
-          onClick={() => handlePlayPhonicsPart('name')}
-          title="文字のなまえ"
-        >
-          <span className="phonics-pill-tag">① なまえ</span>
-          <strong className="phonics-pill-val">{currentChar.letterName || currentChar.char}</strong>
-        </button>
-
-        {!currentChar.langCode.startsWith('ja') && (
+      {/* Multilingual / Phonics Explorer Strip */}
+      {isNumber ? (
+        <div className="phonics-chain-strip">
           <button
-            id="btn-phonics-sound"
+            id="btn-number-ja"
+            className={`phonics-pill ${activePhonicsStep === 'name' ? 'active-step' : ''}`}
+            onClick={() => handlePlayPhonicsPart('name')}
+            title="日本語のよみかた"
+          >
+            <span className="phonics-pill-tag">① にほんご</span>
+            <strong className="phonics-pill-val">{currentChar.numberReadings?.ja || currentChar.letterName}</strong>
+          </button>
+
+          <button
+            id="btn-number-en"
             className={`phonics-pill phonics-pill-sound ${activePhonicsStep === 'sound' ? 'active-step' : ''}`}
             onClick={() => handlePlayPhonicsPart('sound')}
-            title="文字の音 (耳できこう)"
+            title="英語のよみかた"
           >
-            <span className="phonics-pill-tag">② おと</span>
-            <strong className="phonics-pill-val">{currentChar.letterSound || currentChar.char}</strong>
+            <span className="phonics-pill-tag">② English</span>
+            <strong className="phonics-pill-val">{currentChar.numberReadings?.en || 'one'}</strong>
           </button>
-        )}
 
-        <button
-          id="btn-phonics-word"
-          className={`phonics-pill phonics-pill-word ${activePhonicsStep === 'word' ? 'active-step' : ''}`}
-          onClick={() => handlePlayPhonicsPart('word')}
-          title="使われている単語"
-        >
-          <span className="phonics-pill-tag">
-            {currentChar.langCode.startsWith('ja') ? '② ことば' : '③ ことば'}
-          </span>
-          <strong className="phonics-pill-val">
-            {currentChar.exampleWord}
-            {currentChar.exampleTranslation && !currentChar.langCode.startsWith('ja') && (
-              <span className="phonics-pill-trans"> ({currentChar.exampleTranslation})</span>
-            )}
-          </strong>
-        </button>
-      </div>
+          <button
+            id="btn-number-pl"
+            className={`phonics-pill phonics-pill-word ${activePhonicsStep === 'word' ? 'active-step' : ''}`}
+            onClick={() => handlePlayPhonicsPart('word')}
+            title="ポーランド語のよみかた"
+          >
+            <span className="phonics-pill-tag">③ Polski</span>
+            <strong className="phonics-pill-val">{currentChar.numberReadings?.pl || 'jeden'}</strong>
+          </button>
+        </div>
+      ) : (
+        <div className="phonics-chain-strip">
+          <button
+            id="btn-phonics-name"
+            className={`phonics-pill ${activePhonicsStep === 'name' ? 'active-step' : ''}`}
+            onClick={() => handlePlayPhonicsPart('name')}
+            title="文字のなまえ"
+          >
+            <span className="phonics-pill-tag">① なまえ</span>
+            <strong className="phonics-pill-val">{currentChar.letterName || currentChar.char}</strong>
+          </button>
+
+          {!currentChar.langCode.startsWith('ja') && (
+            <button
+              id="btn-phonics-sound"
+              className={`phonics-pill phonics-pill-sound ${activePhonicsStep === 'sound' ? 'active-step' : ''}`}
+              onClick={() => handlePlayPhonicsPart('sound')}
+              title="文字の音 (耳できこう)"
+            >
+              <span className="phonics-pill-tag">② おと</span>
+              <strong className="phonics-pill-val">{currentChar.letterSound || currentChar.char}</strong>
+            </button>
+          )}
+
+          <button
+            id="btn-phonics-word"
+            className={`phonics-pill phonics-pill-word ${activePhonicsStep === 'word' ? 'active-step' : ''}`}
+            onClick={() => handlePlayPhonicsPart('word')}
+            title="使われている単語"
+          >
+            <span className="phonics-pill-tag">
+              {currentChar.langCode.startsWith('ja') ? '② ことば' : '③ ことば'}
+            </span>
+            <strong className="phonics-pill-val">
+              {currentChar.exampleWord}
+              {currentChar.exampleTranslation && !currentChar.langCode.startsWith('ja') && (
+                <span className="phonics-pill-trans"> ({currentChar.exampleTranslation})</span>
+              )}
+            </strong>
+          </button>
+        </div>
+      )}
 
       {/* Main Tracing Stage */}
       <div className="tracer-stage-wrapper">
@@ -702,7 +738,11 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
                 <h3 className="success-text">{celebrationBanner}</h3>
                 <div className="completed-char-display">{currentChar.char}</div>
                 <p className="example-word-badge">
-                  {currentChar.exampleWord} {currentChar.exampleTranslation ? `(${currentChar.exampleTranslation})` : ''}
+                  {isNumber && currentChar.numberReadings ? (
+                    `日: ${currentChar.numberReadings.ja}  •  英: ${currentChar.numberReadings.en}  •  波: ${currentChar.numberReadings.pl}`
+                  ) : (
+                    `${currentChar.exampleWord} ${currentChar.exampleTranslation ? `(${currentChar.exampleTranslation})` : ''}`
+                  )}
                 </p>
 
                 <div className="success-modal-buttons">
@@ -770,10 +810,29 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
           <span className="nav-btn-label-mobile">まえ</span>
         </button>
 
-        <div className="tracer-example-word">
-          <span className="word-label">ことば:</span>
-          <strong className="word-text">{currentChar.exampleWord}</strong>
-        </div>
+        {isNumber ? (
+          <div className="tracer-number-strip">
+            <span className="num-chip-item">
+              <span className="num-chip-label">日</span>
+              <strong className="num-chip-val">{currentChar.numberReadings?.ja || currentChar.letterName}</strong>
+            </span>
+            <span className="num-chip-sep">•</span>
+            <span className="num-chip-item">
+              <span className="num-chip-label">英</span>
+              <strong className="num-chip-val">{currentChar.numberReadings?.en || 'one'}</strong>
+            </span>
+            <span className="num-chip-sep">•</span>
+            <span className="num-chip-item">
+              <span className="num-chip-label">波</span>
+              <strong className="num-chip-val">{currentChar.numberReadings?.pl || 'jeden'}</strong>
+            </span>
+          </div>
+        ) : (
+          <div className="tracer-example-word">
+            <span className="word-label">ことば:</span>
+            <strong className="word-text">{currentChar.exampleWord}</strong>
+          </div>
+        )}
 
         <button
           id="btn-next-char"
