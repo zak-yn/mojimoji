@@ -89,8 +89,11 @@ export const StickerBook: React.FC<StickerBookProps> = ({
         </button>
 
         <div className="stickerbook-title">
-          <Sparkles size={22} color="#D99E1F" />
-          <h1>ぼくの・わたしの シールちょう</h1>
+          <Sparkles size={20} color="#D99E1F" />
+          <h1>
+            <span className="stickerbook-title-desktop">ぼくの・わたしの シールちょう</span>
+            <span className="stickerbook-title-mobile">シールちょう</span>
+          </h1>
         </div>
 
         <button

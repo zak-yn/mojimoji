@@ -3,13 +3,15 @@ import type { CharacterItem, StrokeData } from '../../types';
 import { sound } from '../../sound/audioEngine';
 import { speech } from '../../speech/tts';
 import confetti from 'canvas-confetti';
-import { Play, RotateCcw, Volume2, ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { Play, RotateCcw, Volume2, VolumeX, ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 
 interface StrokeTracerProps {
   characters: CharacterItem[];
   initialIndex: number;
   onBack: () => void;
   onCharacterCompleted: (charId: string) => { isNew: boolean; newSticker?: string };
+  isMuted?: boolean;
+  onToggleMute?: () => void;
 }
 
 function getStrokeStartPoint(d: string): { x: number; y: number } | null {
@@ -128,7 +130,9 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
   characters,
   initialIndex,
   onBack,
-  onCharacterCompleted
+  onCharacterCompleted,
+  isMuted = false,
+  onToggleMute
 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const currentChar = characters[currentIndex];
@@ -440,42 +444,50 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
         <div className="tracer-header-actions">
           <button
             id="btn-repeat-speech"
-            className="tracer-sub-btn"
+            className="tracer-icon-btn"
             onClick={() => {
               sound.playTap();
               playPhonicsChain();
             }}
             title="3拍子の発音をきく"
           >
-            <Volume2 size={20} strokeWidth={2.2} />
-            <span className="btn-label-mobile-hide">おと</span>
+            <Volume2 size={19} strokeWidth={2.2} />
           </button>
 
           <button
             id="btn-play-animation"
-            className="tracer-sub-btn"
+            className="tracer-icon-btn"
             onClick={() => {
               sound.playTap();
               playStrokeAnimation();
             }}
             title="書き順アニメーション"
           >
-            <Play size={20} strokeWidth={2.2} />
-            <span className="btn-label-mobile-hide">てほん</span>
+            <Play size={19} strokeWidth={2.2} />
           </button>
 
           <button
             id="btn-clear-canvas"
-            className="tracer-sub-btn"
+            className="tracer-icon-btn"
             onClick={() => {
               sound.playTap();
               resetCanvas();
             }}
             title="もういちど書く"
           >
-            <RotateCcw size={20} strokeWidth={2.2} />
-            <span className="btn-label-mobile-hide">やりなおす</span>
+            <RotateCcw size={19} strokeWidth={2.2} />
           </button>
+
+          {onToggleMute && (
+            <button
+              id="btn-tracer-mute-toggle"
+              className="tracer-icon-btn"
+              onClick={onToggleMute}
+              title={isMuted ? '音をならす' : '音をけす'}
+            >
+              {isMuted ? <VolumeX size={19} strokeWidth={2.2} /> : <Volume2 size={19} strokeWidth={2.2} />}
+            </button>
+          )}
         </div>
       </div>
 
@@ -754,7 +766,8 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
           disabled={currentIndex === 0}
         >
           <ArrowLeft size={18} strokeWidth={2.5} />
-          <span>まえの もじ</span>
+          <span className="nav-btn-label-desktop">まえの もじ</span>
+          <span className="nav-btn-label-mobile">まえ</span>
         </button>
 
         <div className="tracer-example-word">
@@ -768,7 +781,8 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
           onClick={handleNext}
           title={isLastChar ? 'れんしゅうをおわる' : 'つぎのもじへ'}
         >
-          <span>{isLastChar ? 'おわる' : 'つぎの もじ'}</span>
+          <span className="nav-btn-label-desktop">{isLastChar ? 'おわる' : 'つぎの もじ'}</span>
+          <span className="nav-btn-label-mobile">{isLastChar ? 'おわる' : 'つぎ'}</span>
           {isLastChar ? <CheckCircle2 size={18} strokeWidth={2.5} /> : <ArrowRight size={18} strokeWidth={2.5} />}
         </button>
       </div>

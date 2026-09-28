@@ -407,6 +407,26 @@ button:active {
 .tracer-header-actions {
   display: flex;
   gap: 8px;
+  align-items: center;
+}
+
+.tracer-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-muted);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.tracer-icon-btn:hover {
+  background-color: #EDE8E1;
+  transform: translateY(-1px);
 }
 
 /* ---------------------------------
@@ -1172,17 +1192,29 @@ button:active {
   color: var(--text-main);
   font-size: 0.85rem;
   font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .stickerbook-title {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
 .stickerbook-title h1 {
   font-size: 1.15rem;
   font-weight: 800;
+  white-space: nowrap;
+}
+
+.stickerbook-title-desktop {
+  display: inline;
+}
+
+.stickerbook-title-mobile {
+  display: none;
 }
 
 .stickerbook-clear-btn {
@@ -1194,6 +1226,8 @@ button:active {
   color: var(--text-light);
   font-size: 0.85rem;
   font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .theme-tabs-row {
@@ -1567,10 +1601,12 @@ button:active {
 }
 
 /* Responsive Rules for iPad / Mobile (Pixel, iPhone, Galaxy) */
-.btn-label-mobile {
+.btn-label-mobile,
+.nav-btn-label-mobile {
   display: none;
 }
-.btn-label-desktop {
+.btn-label-desktop,
+.nav-btn-label-desktop {
   display: inline;
 }
 
@@ -1579,16 +1615,19 @@ button:active {
     display: none !important;
   }
 
-  .btn-label-desktop {
+  .btn-label-desktop,
+  .nav-btn-label-desktop {
     display: none !important;
   }
 
-  .btn-label-mobile {
+  .btn-label-mobile,
+  .nav-btn-label-mobile {
     display: inline !important;
   }
 
+  /* Home Screen Mobile Proportions */
   .main-content {
-    padding: 10px 12px 24px;
+    padding: 10px 14px 28px;
   }
 
   .navbar-container {
@@ -1611,6 +1650,7 @@ button:active {
     padding: 6px 10px;
     font-size: 0.82rem;
     gap: 4px;
+    white-space: nowrap;
   }
 
   .badge-count {
@@ -1619,12 +1659,19 @@ button:active {
   }
 
   .welcome-banner {
-    padding: 16px 14px;
-    gap: 12px;
+    padding: 14px 14px;
+    gap: 10px;
+    margin-bottom: 12px;
   }
 
   .welcome-title {
     font-size: 1.15rem;
+    line-height: 1.35;
+  }
+
+  .child-greeting {
+    font-size: 0.82rem;
+    margin-bottom: 2px;
   }
 
   .welcome-desc {
@@ -1647,33 +1694,83 @@ button:active {
   }
 
   .mode-pill-btn {
-    padding: 6px 10px;
+    padding: 6px 12px;
     font-size: 0.82rem;
+    white-space: nowrap;
   }
 
   .category-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
   .category-card {
-    padding: 16px;
+    padding: 14px 16px;
+    gap: 8px;
   }
 
-  /* Stroke Tracer Mobile Optimization */
+  .card-top {
+    margin-bottom: 2px;
+  }
+
+  .card-sample-letters {
+    font-size: 1.8rem;
+    letter-spacing: 0.12em;
+  }
+
+  .card-meta {
+    margin-bottom: 2px;
+  }
+
+  .card-desc {
+    font-size: 0.8rem;
+  }
+
+  .card-actions {
+    gap: 8px;
+  }
+
+  .btn-study-main {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .btn-quiz-sub {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  /* Stroke Tracer 100dvh Zero-Scroll Native App Experience */
+  .main-content-tracer {
+    padding: 6px 10px 10px;
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
   .tracer-root {
-    gap: 10px;
-  }
-
-  .tracer-header {
-    padding: 8px 10px;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     gap: 6px;
   }
 
+  .tracer-header {
+    padding: 6px 10px;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
   .tracer-sub-btn {
-    padding: 6px 8px;
+    padding: 6px 10px;
     font-size: 0.82rem;
     gap: 4px;
+    white-space: nowrap;
   }
 
   .char-badge-info {
@@ -1692,20 +1789,27 @@ button:active {
   }
 
   .tracer-header-actions {
-    gap: 5px;
+    gap: 4px;
+  }
+
+  .tracer-icon-btn {
+    width: 34px;
+    height: 34px;
+    padding: 0;
   }
 
   .phonics-chain-strip {
     display: flex;
     gap: 6px;
     width: 100%;
+    flex-shrink: 0;
   }
 
   .phonics-pill {
     flex: 1;
     min-width: 0;
-    padding: 6px 6px;
-    gap: 2px;
+    padding: 5px 6px;
+    gap: 1px;
   }
 
   .phonics-pill-tag {
@@ -1724,15 +1828,26 @@ button:active {
     display: none;
   }
 
+  .tracer-stage-wrapper {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0;
+  }
+
   .tracer-stage {
-    max-width: min(84vw, 340px);
+    height: 100%;
+    max-height: min(44vh, 320px);
     aspect-ratio: 1 / 1;
     border-radius: var(--radius-md);
   }
 
   .tracer-stroke-dock {
-    padding: 8px 12px;
+    padding: 6px 12px;
     gap: 8px;
+    flex-shrink: 0;
   }
 
   .stroke-count-indicator {
@@ -1740,7 +1855,7 @@ button:active {
   }
 
   .stroke-count-label {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     white-space: nowrap;
   }
 
@@ -1755,20 +1870,21 @@ button:active {
   }
 
   .btn-finish-drawing {
-    padding: 7px 14px;
+    padding: 6px 14px;
     font-size: 0.9rem;
     gap: 5px;
     white-space: nowrap;
   }
 
   .tracer-bottom-nav {
-    padding: 8px 10px;
+    padding: 6px 10px;
     gap: 6px;
+    flex-shrink: 0;
   }
 
   .nav-page-btn {
-    padding: 8px 12px;
-    font-size: 0.82rem;
+    padding: 8px 14px;
+    font-size: 0.85rem;
     gap: 4px;
     white-space: nowrap;
     flex-shrink: 0;
@@ -1778,7 +1894,8 @@ button:active {
     flex: 1;
     min-width: 0;
     justify-content: center;
-    font-size: 0.85rem;
+    text-align: center;
+    font-size: 0.9rem;
     white-space: nowrap;
   }
 
@@ -1787,10 +1904,51 @@ button:active {
   }
 
   .tracer-example-word .word-text {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  /* Quiz Mode Mobile Optimization */
+  .quiz-root {
+    gap: 14px;
+  }
+
+  .quiz-header {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .quiz-back-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .quiz-progress-text {
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  .quiz-score-pill {
+    padding: 4px 10px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .quiz-question-box {
+    padding: 18px 14px;
+    gap: 12px;
+  }
+
+  .quiz-prompt-title {
+    font-size: 1.15rem;
+  }
+
+  .quiz-audio-bubble {
+    padding: 10px 20px;
+    font-size: 0.95rem;
   }
 
   .quiz-options-grid {
@@ -1800,15 +1958,43 @@ button:active {
   .opt-char {
     font-size: 2.6rem;
   }
+
+  /* Sticker Book Mobile Optimization */
+  .stickerbook-title-desktop {
+    display: none !important;
+  }
+
+  .stickerbook-title-mobile {
+    display: inline !important;
+  }
+
+  .stickerbook-header {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .stickerbook-nav-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .stickerbook-clear-btn {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 380px) {
   .tracer-stage {
-    max-width: min(86vw, 300px);
+    max-height: min(40vh, 280px);
   }
 
   .nav-page-btn {
-    padding: 7px 9px;
-    font-size: 0.78rem;
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+
+  .quiz-progress-text {
+    font-size: 0.8rem;
   }
 }

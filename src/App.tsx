@@ -84,18 +84,20 @@ export const App: React.FC = () => {
 
   return (
     <div className="app-shell">
-      {/* Top Navbar */}
-      <Navbar
-        currentView={currentView}
-        onNavigate={view => setCurrentView(view)}
-        onOpenSync={() => setIsSyncModalOpen(true)}
-        stickerCount={progress.earnedStickers.length}
-        isMuted={isMuted}
-        onToggleMute={handleToggleMute}
-      />
+      {/* Top Navbar: only on home view to avoid double headers and mobile vertical cramping */}
+      {currentView === 'home' && (
+        <Navbar
+          currentView={currentView}
+          onNavigate={view => setCurrentView(view)}
+          onOpenSync={() => setIsSyncModalOpen(true)}
+          stickerCount={progress.earnedStickers.length}
+          isMuted={isMuted}
+          onToggleMute={handleToggleMute}
+        />
+      )}
 
       {/* Main Content Area */}
-      <main className="main-content">
+      <main className={`main-content ${currentView === 'tracer' ? 'main-content-tracer' : ''}`}>
         {currentView === 'home' && (
           <CategorySelector
             progress={progress}
@@ -118,6 +120,8 @@ export const App: React.FC = () => {
             initialIndex={0}
             onBack={() => setCurrentView('home')}
             onCharacterCompleted={handleCharacterCompleted}
+            isMuted={isMuted}
+            onToggleMute={handleToggleMute}
           />
         )}
 
