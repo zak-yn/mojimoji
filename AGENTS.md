@@ -7,6 +7,8 @@ Supports Japanese Hiragana/Katakana, English Alphabet, and Polish Alphabet with 
 
 ## 1. Core Architecture & Tech Stack
 - **Framework**: React 19 + TypeScript + Vite 6
+- **Repository**: [https://github.com/zak-yn/mojimoji](https://github.com/zak-yn/mojimoji)
+- **Live Online URL**: [https://zak-yn.github.io/mojimoji/](https://zak-yn.github.io/mojimoji/) (GitHub Pages)
 - **Styling**: Vanilla CSS Modules & CSS Design System (Warm Nordic toy palette `#FAF8F5`, terracotta, sage, mustard, deep navy).
 - **Stroke Engine**: SVG Path vector definitions with `stroke-dashoffset` stroke-order animation + Canvas 2D touch tracer.
 - **Audio Engine**: Web Audio API synthesized organic marimba/glockenspiel SE + Web Speech API multi-language TTS (`ja-JP`, `en-US`, `pl-PL`).
@@ -64,4 +66,5 @@ mojimoji/
 - **2026-09-28 (Audio - Japanese Natural Voice)**: Replaced Web Speech API (OS TTS) for Japanese Hiragana/Katakana with pre-recorded Google TTS MP3s. Downloaded 184 files (46 Hiragana + 46 Katakana × 2 parts: char + word) to `/audio/japanese/`. `tts.ts` now resolves `hira_*`/`kata_*` IDs to `ja_hira_*`/`ja_kata_*` audio paths with automatic Web Speech fallback on MP3 error.
 - **2026-09-29 (Fix - KanjiVG Authentic Stroke Data)**: Downloaded and verified 100% authentic KanjiVG SVG stroke vectors from GitHub for all 46 Hiragana and 46 Katakana (eliminating previously corrupted/approximated paths like 3-stroke う and 4-stroke え). Updated `src/data/characters.ts` so all kana now have authentic stroke counts (う: 2画, え: 2画, etc.) and stroke paths matching the 109x109 viewBox standard.
 - **2026-09-29 (UX - Practice Completion on Final Character)**: Replaced disabled 「つぎの もじ」 on the final character (46/46 or 26/26) with an interactive 「おわる」 action button and 「れんしゅうを おわる」 modal button with celebratory audio and clean navigation return to the category home screen.
+- **2026-09-29 (DevOps - GitHub Repo & Pages Live Deployment)**: Created public repository `zak-yn/mojimoji` on GitHub, configured Vite base path resolution for subpath hosting, and published live PWA to GitHub Pages (`https://zak-yn.github.io/mojimoji/`).
 
