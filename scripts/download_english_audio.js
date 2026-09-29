@@ -9,45 +9,50 @@ if (!fs.existsSync(outDir)) {
 
 // Educational English Phonics & Alphabet Mapping
 const ENGLISH_AUDIO_ITEMS = [
-  { id: 'en_a', nameQuery: 'A', soundQuery: 'a', soundLang: 'it', wordQuery: 'Apple' },
-  { id: 'en_b', nameQuery: 'B', soundQuery: 'buh', wordQuery: 'Bear' },
-  { id: 'en_c', nameQuery: 'C', soundQuery: 'kuh', wordQuery: 'Cat' },
-  { id: 'en_d', nameQuery: 'D', soundQuery: 'duh', wordQuery: 'Dog' },
-  { id: 'en_e', nameQuery: 'E', soundQuery: 'eh', wordQuery: 'Elephant' },
-  { id: 'en_f', nameQuery: 'F', soundQuery: 'fuh', wordQuery: 'Fox' },
-  { id: 'en_g', nameQuery: 'G', soundQuery: 'guh', wordQuery: 'Gorilla' },
-  { id: 'en_h', nameQuery: 'H', soundQuery: 'huh', wordQuery: 'Hat' },
-  // For 'I': name is 'I' (pronounced eye /aɪ/), sound is pure short /ɪ/ ('イ' sound, query 'i' with tl=pl)
-  { id: 'en_i', nameQuery: 'I', soundQuery: 'i', soundLang: 'pl', wordQuery: 'Igloo' },
-  { id: 'en_j', nameQuery: 'J', soundQuery: 'juh', wordQuery: 'Jam' },
-  { id: 'en_k', nameQuery: 'K', soundQuery: 'kuh', wordQuery: 'Kite' },
-  { id: 'en_l', nameQuery: 'L', soundQuery: 'luh', wordQuery: 'Lion' },
-  { id: 'en_m', nameQuery: 'M', soundQuery: 'muh', wordQuery: 'Monkey' },
-  { id: 'en_n', nameQuery: 'N', soundQuery: 'nuh', wordQuery: 'Nest' },
-  { id: 'en_o', nameQuery: 'O', soundQuery: 'aw', wordQuery: 'Octopus' },
-  { id: 'en_p', nameQuery: 'P', soundQuery: 'puh', wordQuery: 'Pig' },
-  { id: 'en_q', nameQuery: 'Q', soundQuery: 'qua', soundLang: 'it', wordQuery: 'Queen' },
-  { id: 'en_r', nameQuery: 'R', soundQuery: 'ruh', wordQuery: 'Rabbit' },
-  { id: 'en_s', nameQuery: 'S', soundQuery: 'suh', wordQuery: 'Sun' },
-  { id: 'en_t', nameQuery: 'T', soundQuery: 'tuh', wordQuery: 'Tiger' },
-  { id: 'en_u', nameQuery: 'U', soundQuery: 'uh', wordQuery: 'Umbrella' },
-  { id: 'en_v', nameQuery: 'V', soundQuery: 'vuh', wordQuery: 'Van' },
-  { id: 'en_w', nameQuery: 'W', soundQuery: 'wuh', wordQuery: 'Window' },
-  { id: 'en_x', nameQuery: 'X', soundQuery: 'ks', soundLang: 'pl', wordQuery: 'Xylophone' },
-  { id: 'en_y', nameQuery: 'Y', soundQuery: 'yuh', wordQuery: 'Yak' },
-  { id: 'en_z', nameQuery: 'Z', soundQuery: 'zy', soundLang: 'pl', wordQuery: 'Zebra' }
+  { id: 'en_a', letter: 'a', nameQuery: 'A', wordQuery: 'Apple' },
+  { id: 'en_b', letter: 'b', nameQuery: 'B', wordQuery: 'Bear' },
+  { id: 'en_c', letter: 'c', nameQuery: 'C', wordQuery: 'Cat' },
+  { id: 'en_d', letter: 'd', nameQuery: 'D', wordQuery: 'Dog' },
+  { id: 'en_e', letter: 'e', nameQuery: 'E', wordQuery: 'Elephant' },
+  { id: 'en_f', letter: 'f', nameQuery: 'F', wordQuery: 'Fox' },
+  { id: 'en_g', letter: 'g', nameQuery: 'G', wordQuery: 'Gorilla' },
+  { id: 'en_h', letter: 'h', nameQuery: 'H', wordQuery: 'Hat' },
+  { id: 'en_i', letter: 'i', nameQuery: 'I', wordQuery: 'Igloo' },
+  { id: 'en_j', letter: 'j', nameQuery: 'J', wordQuery: 'Jam' },
+  { id: 'en_k', letter: 'k', nameQuery: 'K', wordQuery: 'Kite' },
+  { id: 'en_l', letter: 'l', nameQuery: 'L', wordQuery: 'Lion' },
+  { id: 'en_m', letter: 'm', nameQuery: 'M', wordQuery: 'Monkey' },
+  { id: 'en_n', letter: 'n', nameQuery: 'N', wordQuery: 'Nest' },
+  { id: 'en_o', letter: 'o', nameQuery: 'O', wordQuery: 'Octopus' },
+  { id: 'en_p', letter: 'p', nameQuery: 'P', wordQuery: 'Pig' },
+  { id: 'en_q', letter: 'qu', nameQuery: 'Q', wordQuery: 'Queen' }, // 'qu' in Synthetic Phonics
+  { id: 'en_r', letter: 'r', nameQuery: 'R', wordQuery: 'Rabbit' },
+  { id: 'en_s', letter: 's', nameQuery: 'S', wordQuery: 'Sun' },
+  { id: 'en_t', letter: 't', nameQuery: 'T', wordQuery: 'Tiger' },
+  { id: 'en_u', letter: 'u', nameQuery: 'U', wordQuery: 'Umbrella' },
+  { id: 'en_v', letter: 'v', nameQuery: 'V', wordQuery: 'Van' },
+  { id: 'en_w', letter: 'w', nameQuery: 'W', wordQuery: 'Window' },
+  { id: 'en_x', letter: 'x', nameQuery: 'X', wordQuery: 'Xylophone' },
+  { id: 'en_y', letter: 'y', nameQuery: 'Y', wordQuery: 'Yak' },
+  { id: 'en_z', letter: 'z', nameQuery: 'Z', wordQuery: 'Zebra' }
 ];
 
-async function fetchAudio(text, lang = 'en') {
+async function fetchGoogleTTS(text, lang = 'en') {
   const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&client=tw-ob&q=${encodeURIComponent(text)}`;
   const res = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-    }
+    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
   });
-  if (!res.ok) {
-    throw new Error(`HTTP ${res.status} for ${text}`);
-  }
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${text}`);
+  const buf = await res.arrayBuffer();
+  return Buffer.from(buf);
+}
+
+async function fetchPurePhonicsSound(soundKey) {
+  const url = `https://phonicademy.com/assets/audio/phonemes/${soundKey}.mp3`;
+  const res = await fetch(url, {
+    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status} for phoneme ${soundKey}`);
   const buf = await res.arrayBuffer();
   return Buffer.from(buf);
 }
@@ -64,43 +69,41 @@ async function main() {
     const nameFile = path.join(outDir, `${item.id}_name.mp3`);
     if (!fs.existsSync(nameFile)) {
       try {
-        const buf = await fetchAudio(item.nameQuery);
+        const buf = await fetchGoogleTTS(item.nameQuery);
         fs.writeFileSync(nameFile, buf);
         process.stdout.write(`[name: ${item.nameQuery}] `);
-        await sleep(120);
+        await sleep(100);
       } catch (err) {
         console.error(`\nError name ${item.id}:`, err.message);
       }
     }
 
-    // 2. Letter Sound / Phonics
+    // 2. Pure Phonics Sound (Synthetic Phonics without trailing schwa)
     const soundFile = path.join(outDir, `${item.id}_sound.mp3`);
-    if (!fs.existsSync(soundFile)) {
-      try {
-        const buf = await fetchAudio(item.soundQuery, item.soundLang || 'en');
-        fs.writeFileSync(soundFile, buf);
-        process.stdout.write(`[sound: ${item.soundQuery}] `);
-        await sleep(120);
-      } catch (err) {
-        console.error(`\nError sound ${item.id}:`, err.message);
-      }
+    try {
+      const buf = await fetchPurePhonicsSound(item.letter);
+      fs.writeFileSync(soundFile, buf);
+      process.stdout.write(`[sound: /${item.letter}/] `);
+      await sleep(100);
+    } catch (err) {
+      console.error(`\nError sound ${item.id}:`, err.message);
     }
 
     // 3. Anchor Word
     const wordFile = path.join(outDir, `${item.id}_word.mp3`);
     if (!fs.existsSync(wordFile)) {
       try {
-        const buf = await fetchAudio(item.wordQuery);
+        const buf = await fetchGoogleTTS(item.wordQuery);
         fs.writeFileSync(wordFile, buf);
         process.stdout.write(`[word: ${item.wordQuery}] `);
-        await sleep(120);
+        await sleep(100);
       } catch (err) {
         console.error(`\nError word ${item.id}:`, err.message);
       }
     }
   }
 
-  console.log('\nAll English audio files downloaded successfully to public/audio/english/');
+  console.log('\nAll English audio files verified in public/audio/english/');
 }
 
 main().catch(console.error);

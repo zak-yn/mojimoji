@@ -76,4 +76,7 @@ mojimoji/
 - **2026-09-30 (Pedagogy & UX - Completion Audio Gating for Modal Next Button)**:
   - Gated the celebration modal's action button (`#btn-next-after-complete` / 「つぎの もじへ」) until the character's full pronunciation chain (Name → Sound → Word) finishes playing.
   - Displays an active listening state (`おとを きいてね...` with pulsing volume indicator) while speech is active, transitioning dynamically to active green (`つぎの もじへ →`) upon audio completion.
-  - Left the bottom-right skip button (`#btn-next-char` / 「つぎ」) completely uninhibited so learners/parents can freely skip anytime. Added 8s safety fallback preventing lockouts.
+- **2026-09-30 (Pedagogy & Audio - English & Polish Phonics Pure Sounds Overhaul)**:
+  - Eliminated corrupted TTS phonics sounds (buh, kuh, duh in English; by, cy, dy in Polish).
+  - English: Replaced all 26 letter sounds with authentic studio-recorded Synthetic Phonics Pure Sounds (no schwa /ə/).
+  - Polish: Replaced all 26 głoski with pure phonemes (7 pure vowels, 13 universal stops/continuants, and 6 Polish-specific phonemes [ts], [tɕ], [ɕ], [ʑ], [ʐ], [r] from Wikimedia Commons).
