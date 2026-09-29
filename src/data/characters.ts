@@ -3201,7 +3201,7 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
           },
           {
             "order": 2,
-            "d": "M76.37,36.02c-14.95-2.31-26.26,3.64-32.44,17.63"
+            "d": "M43.93,53.65 C50.11,39.66 61.42,33.71 76.37,36.02"
           }
         ]
       },
@@ -3411,7 +3411,7 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
           },
           {
             "order": 4,
-            "d": "M 82 82 C 82 92 88 98 96 92"
+            "d": "M 84 82 C 85 92 89 98 95 93"
           }
         ]
       },
@@ -3949,11 +3949,11 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
         "strokes": [
           {
             "order": 1,
-            "d": "M68,50 C64,40 54,35 44,35 C30,35 24,48 24,63 C24,78 32,89 46,89 C58,89 66,80 68,69 L68,36 L68,84 C68,87 72,89 76,87"
+            "d": "M68,50 C64,40 54,35 44,35 C30,35 24,48 24,63 C24,78 32,89 46,89 C58,89 66,80 68,69 L68,36 L68,84"
           },
           {
             "order": 2,
-            "d": "M68,85 C72,93 74,102 66,106 C60,108 56,104 56,100"
+            "d": "M68,84 C68,93 72,101 78,101 C83,101 87,97 87,91"
           }
         ]
       },
@@ -4012,7 +4012,7 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
           },
           {
             "order": 2,
-            "d": "M62,22 L48,34"
+            "d": "M48,34 L62,22"
           }
         ]
       },
@@ -4071,7 +4071,7 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
           },
           {
             "order": 2,
-            "d": "M68,85 C72,93 74,102 66,106 C60,108 56,104 56,100"
+            "d": "M66,88 C67,95 72,102 78,102 C84,102 88,97 88,91"
           }
         ]
       },
@@ -4231,7 +4231,7 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
           },
           {
             "order": 2,
-            "d": "M62,22 L48,34"
+            "d": "M48,34 L62,22"
           }
         ]
       },
@@ -4273,7 +4273,7 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
           },
           {
             "order": 2,
-            "d": "M76.37,36.02c-14.95-2.31-26.26,3.64-32.44,17.63"
+            "d": "M43.93,53.65 C50.11,39.66 61.42,33.71 76.37,36.02"
           }
         ]
       },
@@ -4311,7 +4311,7 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
           },
           {
             "order": 2,
-            "d": "M62,22 L48,34"
+            "d": "M48,34 L62,22"
           }
         ]
       },
@@ -4404,7 +4404,7 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
           },
           {
             "order": 2,
-            "d": "M62,22 L48,34"
+            "d": "M48,34 L62,22"
           }
         ]
       },
