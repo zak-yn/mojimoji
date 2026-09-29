@@ -73,3 +73,7 @@ mojimoji/
 - **2026-09-30 (Pedagogy - Continuous 1-Stroke Lowercase m, n, h, r)**:
   - Overhauled lowercase `m` (from 3 strokes to 1 continuous stroke), `n` (from 2 strokes to 1 continuous stroke), `h` (from 2 strokes to 1 continuous stroke), and `r` (from 2 strokes to 1 continuous stroke) across both English and Polish datasets.
   - Aligned with modern elementary penmanship curricula (e.g., Handwriting Without Tears "dive and swim" family, Japanese elementary English textbooks) where downstrokes retrace smoothly up the stem without lifting the pen, delivering a seamless tracing experience.
+- **2026-09-30 (Pedagogy & UX - Completion Audio Gating for Modal Next Button)**:
+  - Gated the celebration modal's action button (`#btn-next-after-complete` / 「つぎの もじへ」) until the character's full pronunciation chain (Name → Sound → Word) finishes playing.
+  - Displays an active listening state (`おとを きいてね...` with pulsing volume indicator) while speech is active, transitioning dynamically to active green (`つぎの もじへ →`) upon audio completion.
+  - Left the bottom-right skip button (`#btn-next-char` / 「つぎ」) completely uninhibited so learners/parents can freely skip anytime. Added 8s safety fallback preventing lockouts.

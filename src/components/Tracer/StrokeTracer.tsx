@@ -145,11 +145,22 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
   const [activePhonicsStep, setActivePhonicsStep] = useState<'name' | 'sound' | 'word' | null>(null);
   const [hasDrawn, setHasDrawn] = useState<boolean>(false);
   const [guidanceHint, setGuidanceHint] = useState<string | null>(null);
+  const [isAudioFinished, setIsAudioFinished] = useState<boolean>(false);
+  const audioFinishedSafetyTimerRef = useRef<number | null>(null);
 
   // Play full 3-step phonics rhythm (Name -> Sound -> Word)
-  const playPhonicsChain = useCallback(() => {
-    if (!currentChar) return;
-    speech.speakPhonicsChain(currentChar, step => setActivePhonicsStep(step));
+  const playPhonicsChain = useCallback((onComplete?: () => void) => {
+    if (!currentChar) {
+      if (onComplete) onComplete();
+      return;
+    }
+    speech.speakPhonicsChain(
+      currentChar,
+      step => setActivePhonicsStep(step),
+      () => {
+        if (onComplete) onComplete();
+      }
+    );
   }, [currentChar]);
 
   // Play an individual part of phonics
@@ -220,6 +231,11 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
   // Reset drawing canvas
   const resetCanvas = useCallback(() => {
     stopAnimation();
+    if (audioFinishedSafetyTimerRef.current) {
+      clearTimeout(audioFinishedSafetyTimerRef.current);
+      audioFinishedSafetyTimerRef.current = null;
+    }
+    setIsAudioFinished(false);
     userStrokeIndexRef.current = 0;
     setUserStrokeIndex(0);
     setIsCompleted(false);
@@ -242,6 +258,7 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
   const triggerCompletion = useCallback(() => {
     if (isCompleted) return;
     setIsCompleted(true);
+    setIsAudioFinished(false);
     sound.playSuccess();
     confetti({
       particleCount: 50,
@@ -249,8 +266,23 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
       origin: { y: 0.6 }
     });
 
+    if (audioFinishedSafetyTimerRef.current) {
+      clearTimeout(audioFinishedSafetyTimerRef.current);
+    }
+    // Safety fallback: unlock button after 8s max in case audio fails or device hangs
+    audioFinishedSafetyTimerRef.current = window.setTimeout(() => {
+      setIsAudioFinished(true);
+      audioFinishedSafetyTimerRef.current = null;
+    }, 8000);
+
     setTimeout(() => {
-      playPhonicsChain();
+      playPhonicsChain(() => {
+        if (audioFinishedSafetyTimerRef.current) {
+          clearTimeout(audioFinishedSafetyTimerRef.current);
+          audioFinishedSafetyTimerRef.current = null;
+        }
+        setIsAudioFinished(true);
+      });
     }, 400);
 
     const result = onCharacterCompleted(currentChar.id);
@@ -278,6 +310,10 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
     }, 580);
 
     return () => {
+      if (audioFinishedSafetyTimerRef.current) {
+        clearTimeout(audioFinishedSafetyTimerRef.current);
+        audioFinishedSafetyTimerRef.current = null;
+      }
       clearTimeout(phonicsTimer);
       clearTimeout(animTimer);
       stopAnimation();
@@ -748,11 +784,24 @@ export const StrokeTracer: React.FC<StrokeTracerProps> = ({
                 <div className="success-modal-buttons">
                   <button
                     id="btn-next-after-complete"
-                    className={`modal-next-btn ${isLastChar ? 'modal-finish-btn' : ''}`}
+                    className={`modal-next-btn ${isLastChar ? 'modal-finish-btn' : ''} ${!isAudioFinished ? 'waiting' : 'ready'}`}
                     onClick={handleNext}
+                    disabled={!isAudioFinished}
                   >
-                    <span>{isLastChar ? 'れんしゅうを おわる' : 'つぎの もじへ'}</span>
-                    {isLastChar ? <Sparkles size={20} strokeWidth={2.5} /> : <ArrowRight size={20} strokeWidth={2.5} />}
+                    <span>
+                      {!isAudioFinished
+                        ? 'おとを きいてね...'
+                        : isLastChar
+                        ? 'れんしゅうを おわる'
+                        : 'つぎの もじへ'}
+                    </span>
+                    {!isAudioFinished ? (
+                      <Volume2 size={20} className="modal-audio-pulse" strokeWidth={2.5} />
+                    ) : isLastChar ? (
+                      <Sparkles size={20} strokeWidth={2.5} />
+                    ) : (
+                      <ArrowRight size={20} strokeWidth={2.5} />
+                    )}
                   </button>
                   <button
                     id="btn-retry-after-complete"
