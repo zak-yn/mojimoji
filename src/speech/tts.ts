@@ -74,9 +74,9 @@ class SpeechEngine {
   }
 
   /**
-   * Play an MP3 file via HTML5 Audio
+   * Play an MP3 file via HTML5 Audio with cache busting
    */
-  public playAudioFile(url: string, onEnd?: () => void): boolean {
+  public playAudioFile(url: string, onEnd?: () => void, onError?: () => void): boolean {
     // Stop any previously playing audio without triggering its onended callback
     if (this.activeAudio) {
       this.activeAudio.onended = null;
@@ -87,7 +87,10 @@ class SpeechEngine {
     try {
       const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
       const fullUrl = url.startsWith('/') ? `${baseUrl}${url}` : url;
-      const audio = new Audio(fullUrl);
+      // Append version query parameter to avoid stale cached MP3s
+      const separator = fullUrl.includes('?') ? '&' : '?';
+      const versionedUrl = `${fullUrl}${separator}v=20260930_pure`;
+      const audio = new Audio(versionedUrl);
       this.activeAudio = audio;
       audio.onended = () => {
         this.activeAudio = null;
@@ -95,15 +98,18 @@ class SpeechEngine {
       };
       audio.onerror = () => {
         this.activeAudio = null;
-        if (onEnd) onEnd();
+        if (onError) onError();
+        else if (onEnd) onEnd();
       };
       audio.play().catch(() => {
         this.activeAudio = null;
-        if (onEnd) onEnd();
+        if (onError) onError();
+        else if (onEnd) onEnd();
       });
       return true;
     } catch {
-      if (onEnd) onEnd();
+      if (onError) onError();
+      else if (onEnd) onEnd();
       return false;
     }
   }
@@ -173,25 +179,14 @@ class SpeechEngine {
       const filePart = part === 'sound' ? 'name' : part;
       if (audioId) {
         const url = `/audio/japanese/${audioId}_${filePart}.mp3`;
-        // Try MP3 first; if it fails (file not found), fall back to Web Speech
-        const audio = new Audio(url);
-        audio.onerror = () => {
-          // Fallback: Web Speech API
+        const fallback = () => {
           if (part === 'word') {
             this.speak(item.exampleWord, item.langCode, onEnd);
           } else {
             this.speak(item.char, item.langCode, onEnd);
           }
         };
-        audio.onended = () => { if (onEnd) onEnd(); };
-        this.activeAudio = audio;
-        audio.play().catch(() => {
-          if (part === 'word') {
-            this.speak(item.exampleWord, item.langCode, onEnd);
-          } else {
-            this.speak(item.char, item.langCode, onEnd);
-          }
-        });
+        this.playAudioFile(url, onEnd, fallback);
         return;
       }
       // No audio ID mapping: fallback to Web Speech
