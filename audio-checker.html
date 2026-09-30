@@ -612,7 +612,6 @@
           `;
         } else {
           // Polish
-          const isVowel = ['a', 'a_ogonek', 'e', 'e_ogonek', 'o', 'o_acute', 'u'].includes(item.id);
           const currSoundUrl = `/audio/polish/pl_${item.id}_sound.mp3`;
           const nameAudioUrl = `/audio/polish/pl_${item.id}_name.mp3`;
           const wordAudioUrl = `/audio/polish/pl_${item.id}_word.mp3`;
@@ -621,32 +620,26 @@
             <div class="letter-badge">
               <div class="letter-char">${item.char}</div>
               <div class="letter-meta">${item.soundIpa}</div>
-              <div style="font-size: 0.65rem; color: ${isVowel ? 'var(--accent)' : 'var(--blue)'}; margin-top: 4px; font-weight: 700;">
-                ${isVowel ? '母音 (1音)' : '子音 (文字名+音)'}
-              </div>
             </div>
             <div class="audio-group">
               <div class="audio-row">
                 <button class="play-pill pill-curr" onclick="playSound('${nameAudioUrl}', this, this.closest('.card'))">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  文字名: ${item.char.split(' ')[0]}
+                  1. 文字名 (Litera)
                 </button>
-                ${!isVowel ? `
                 <button class="play-pill" onclick="playSound('${currSoundUrl}', this, this.closest('.card'))">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  子音音: ${item.soundIpa}
-                </button>` : `
-                <span style="font-size: 0.75rem; color: var(--text-muted); align-self: center;">※母音のため文字名と同一</span>
-                `}
+                  2. 音 (Głoska: ${item.soundIpa})
+                </button>
                 <button class="play-pill" onclick="playSound('${wordAudioUrl}', this, this.closest('.card'))">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  単語 (${item.word})
+                  3. 単語 (${item.word})
                 </button>
               </div>
               <div class="candidate-choice">
-                <span class="tag">連鎖再生テスト</span>
+                <span class="tag">3音ステップ確認</span>
                 <button class="btn" style="padding: 4px 10px; font-size: 0.78rem;" onclick="testPolishChain('${item.id}', this.closest('.card'))">
-                  ▶ 連鎖テスト (${isVowel ? '文字 → 単語' : '文字名 → 音 → 単語'})
+                  ▶ 3音連鎖テスト (文字名 → 音 → 単語)
                 </button>
               </div>
             </div>
@@ -658,24 +651,17 @@
     }
 
     function testPolishChain(id, cardEl) {
-      const isVowel = ['a', 'a_ogonek', 'e', 'e_ogonek', 'o', 'o_acute', 'u'].includes(id);
       const nameUrl = `/audio/polish/pl_${id}_name.mp3`;
       const soundUrl = `/audio/polish/pl_${id}_sound.mp3`;
       const wordUrl = `/audio/polish/pl_${id}_word.mp3`;
 
-      if (isVowel) {
-        playSound(nameUrl, null, cardEl, () => {
-          setTimeout(() => playSound(wordUrl, null, cardEl), 400);
-        });
-      } else {
-        playSound(nameUrl, null, cardEl, () => {
-          setTimeout(() => {
-            playSound(soundUrl, null, cardEl, () => {
-              setTimeout(() => playSound(wordUrl, null, cardEl), 400);
-            });
-          }, 400);
-        });
-      }
+      playSound(nameUrl, null, cardEl, () => {
+        setTimeout(() => {
+          playSound(soundUrl, null, cardEl, () => {
+            setTimeout(() => playSound(wordUrl, null, cardEl), 400);
+          });
+        }, 400);
+      });
     }
 
     function setPreference(id, choice) {
