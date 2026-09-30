@@ -90,3 +90,7 @@ mojimoji/
   - Preserved standard 3-step rhythm chain (1. Letter Name → 2. Letter Sound → 3. Example Word) for all Polish characters (including vowels: e.g. "A... A... jabłko").
   - Cleaned all Polish audio files (`/audio/polish/`): Eliminated raw oversized multi-repeat Wikimedia files (e.g. 56KB `ć`, `ż` files where speakers repeated words) and mismatched English phonemes, restoring consistent, crisp native Polish recordings across all 26 characters.
   - Re-deployed to GitHub Pages (`gh-pages`).
+- **2026-09-30 (Audio - UK Jolly Phonics Production Adoption for English A-Z)**:
+  - Adopted British UK Jolly Phonics pure studio sounds for all 26 English letters into `/audio/english/en_*_sound.mp3`.
+  - Bumped cache buster to `?v=20260930_uk_jolly` in `tts.ts` for immediate mobile cache invalidation.
+  - Built and deployed to GitHub Pages (`gh-pages`). Live HTTP 200 verified (Content-Length: 179,621 bytes).
