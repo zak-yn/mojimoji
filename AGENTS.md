@@ -82,3 +82,7 @@ mojimoji/
   - Polish: Replaced all 26 głoski with pure phonemes (7 pure vowels, 13 universal stops/continuants, and 6 Polish-specific phonemes [ts], [tɕ], [ɕ], [ʑ], [ʐ], [r] from Wikimedia Commons).
   - Added cache-busting version parameter (`?v=20260930_pure`) in `tts.ts` to prevent stale browser audio caching on mobile browsers.
   - Successfully built and deployed to production GitHub Pages (`gh-pages` branch, commit `1bc09c0`). Verified HTTP 200 responses and byte parity live in browser.
+- **2026-09-30 (Tooling & Audio - Interactive Audio Checker & 26 UK British Phonics Candidates)**:
+  - Downloaded authentic British studio recordings (UK Jolly Phonics pure sounds, A-Z) into `/audio/candidates/uk_jolly/`.
+  - Built standalone interactive review tool [`public/audio-checker.html`](file:///c:/Users/wonsh/antigravity_projects/mojimoji/public/audio-checker.html) with 1-click side-by-side audition (Candidate 1 UK Jolly vs Candidate 2 current sound vs Letter Name vs Word), speed selector (0.8x/1.0x/1.2x), and consecutive A-Z autoplay.
+  - Published live to [https://zak-yn.github.io/mojimoji/audio-checker.html](https://zak-yn.github.io/mojimoji/audio-checker.html).
