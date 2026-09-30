@@ -566,10 +566,11 @@
         card.id = `card-${item.id}`;
 
         if (currentLang === 'en') {
-          const ukAudioUrl = `/audio/candidates/uk_jolly/${item.id}.mp3`;
           const currSoundUrl = `/audio/english/en_${item.id}_sound.mp3`;
           const nameAudioUrl = `/audio/english/en_${item.id}_name.mp3`;
           const wordAudioUrl = `/audio/english/en_${item.id}_word.mp3`;
+
+          const isL = item.id === 'l';
 
           card.innerHTML = `
             <div class="letter-badge">
@@ -578,14 +579,20 @@
             </div>
             <div class="audio-group">
               <div class="audio-row">
-                <button class="play-pill pill-uk" onclick="playSound('${ukAudioUrl}', this, this.closest('.card'))">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  🇬🇧 候補1: 英国式フォニックス (UK Jolly)
-                </button>
                 <button class="play-pill pill-curr" onclick="playSound('${currSoundUrl}', this, this.closest('.card'))">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  候補2: 現在のフォニックス音
+                  ${isL ? '▶ 採用中: クリアな舌先音 (/l/)' : '▶ 採用中: 英国式1音フォニックス'}
                 </button>
+                ${isL ? `
+                <button class="play-pill pill-uk" onclick="playSound('/audio/candidates/l_options/uk_jolly_seg1.mp3', this, this.closest('.card'))">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  UK Jolly (イに聞こえる高音)
+                </button>
+                <button class="play-pill" onclick="playSound('/audio/candidates/l_options/uk_jolly_seg2.mp3', this, this.closest('.card'))">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  UK Jolly (第2発声)
+                </button>
+                ` : ''}
               </div>
               <div class="audio-row" style="opacity: 0.85;">
                 <button class="play-pill" onclick="playSound('${nameAudioUrl}', this, this.closest('.card'))">
@@ -598,15 +605,10 @@
                 </button>
               </div>
               <div class="candidate-choice">
-                <span class="tag">採用選択</span>
-                <label class="choice-label">
-                  <input type="radio" name="choice-${item.id}" value="uk" checked onchange="setPreference('${item.id}', 'uk')">
-                  🇬🇧 英国式 (候補1)
-                </label>
-                <label class="choice-label">
-                  <input type="radio" name="choice-${item.id}" value="curr" onchange="setPreference('${item.id}', 'curr')">
-                  現在音 (候補2)
-                </label>
+                <span class="tag">連鎖テスト</span>
+                <button class="btn" style="padding: 4px 10px; font-size: 0.78rem;" onclick="testEnglishChain('${item.id}', this.closest('.card'))">
+                  ▶ 3音連鎖テスト (文字名 → フォニックス音 → 単語)
+                </button>
               </div>
             </div>
           `;
@@ -654,6 +656,20 @@
       const nameUrl = `/audio/polish/pl_${id}_name.mp3`;
       const soundUrl = `/audio/polish/pl_${id}_sound.mp3`;
       const wordUrl = `/audio/polish/pl_${id}_word.mp3`;
+
+      playSound(nameUrl, null, cardEl, () => {
+        setTimeout(() => {
+          playSound(soundUrl, null, cardEl, () => {
+            setTimeout(() => playSound(wordUrl, null, cardEl), 400);
+          });
+        }, 400);
+      });
+    }
+
+    function testEnglishChain(id, cardEl) {
+      const nameUrl = `/audio/english/en_${id}_name.mp3`;
+      const soundUrl = `/audio/english/en_${id}_sound.mp3`;
+      const wordUrl = `/audio/english/en_${id}_word.mp3`;
 
       playSound(nameUrl, null, cardEl, () => {
         setTimeout(() => {
