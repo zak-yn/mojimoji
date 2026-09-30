@@ -86,3 +86,7 @@ mojimoji/
   - Downloaded authentic British studio recordings (UK Jolly Phonics pure sounds, A-Z) into `/audio/candidates/uk_jolly/`.
   - Built standalone interactive review tool [`public/audio-checker.html`](file:///c:/Users/wonsh/antigravity_projects/mojimoji/public/audio-checker.html) with 1-click side-by-side audition (Candidate 1 UK Jolly vs Candidate 2 current sound vs Letter Name vs Word), speed selector (0.8x/1.0x/1.2x), and consecutive A-Z autoplay.
   - Published live to [https://zak-yn.github.io/mojimoji/audio-checker.html](https://zak-yn.github.io/mojimoji/audio-checker.html).
+- **2026-09-30 (Pedagogy & Polish Audio - Duplicate Vowel Repetition Elimination & Audio Clean)**:
+  - Fixed unnatural repetition in Polish vowels (`A`, `Ą`, `E`, `Ę`, `O`, `Ó`, `U`): In Polish, vowel letter name and sound are identical ([a], [e], [o]...). Updated `speakPhonicsChain` to skip redundant `sound` step for vowels (Name → Word), preventing duplicate ("A... A... jabłko") speech.
+  - Consonants preserved as 3-step (Name → Głoska → Word) with consistent 5KB studio native Polish recordings, eliminating oversized 56KB multi-repeat Wikimedia files and mismatched English stops.
+  - Re-deployed to GitHub Pages (`gh-pages`).
