@@ -89,7 +89,7 @@ class SpeechEngine {
       const fullUrl = url.startsWith('/') ? `${baseUrl}${url}` : url;
       // Append version query parameter to avoid stale cached MP3s
       const separator = fullUrl.includes('?') ? '&' : '?';
-      const versionedUrl = `${fullUrl}${separator}v=20260930_uk_jolly`;
+      const versionedUrl = `${fullUrl}${separator}v=20260930_uk_1shot`;
       const audio = new Audio(versionedUrl);
       this.activeAudio = audio;
       audio.onended = () => {
