@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mojimoji 音源チェッカー (Audio Checker & Audition)</title>
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --surface: #FFFFFF;
+      --surface-subtle: #F3EFEA;
+      --border: #E8E2D9;
+      --border-focus: #D0C7BA;
+      --text: #2D2721;
+      --text-muted: #7A7267;
+      --accent: #D96B43; /* Terracotta */
+      --accent-subtle: #FDF3EF;
+      --accent-hover: #C55C36;
+      --green: #4D7C5F; /* Sage green */
+      --green-subtle: #EDF5F0;
+      --blue: #3A6987;
+      --blue-subtle: #EFF5F9;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(45, 39, 33, 0.05);
+      --shadow-md: 0 4px 12px rgba(45, 39, 33, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      padding: 24px 16px 80px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--surface-subtle);
+      padding: 4px;
+      border-radius: 8px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--surface-subtle);
+      border-color: var(--border-focus);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .speed-select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 7px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* Grid of character cards */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 20px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.15s ease;
+    }
+
+    .card.playing {
+      border-color: var(--accent);
+      background: var(--accent-subtle);
+    }
+
+    .letter-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 6px;
+      min-height: 80px;
+    }
+
+    .letter-char {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .letter-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-family: monospace;
+    }
+
+    .audio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .audio-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .play-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      transition: all 0.12s ease;
+      user-select: none;
+    }
+
+    .play-pill:hover {
+      background: var(--surface-subtle);
+      border-color: var(--border-focus);
+    }
+
+    .play-pill.active-pill {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+
+    .pill-uk {
+      border-color: #BBD6E8;
+      background: #F4F8FA;
+      color: #274D66;
+    }
+    .pill-uk:hover {
+      background: #E4EFF6;
+    }
+    .pill-uk.active-pill {
+      background: #274D66;
+      color: #FFF;
+      border-color: #274D66;
+    }
+
+    .pill-curr {
+      border-color: #D3E5DC;
+      background: #F4F9F6;
+      color: #2D5E44;
+    }
+    .pill-curr:hover {
+      background: #E5F1EB;
+    }
+    .pill-curr.active-pill {
+      background: #2D5E44;
+      color: #FFF;
+      border-color: #2D5E44;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.06);
+    }
+
+    .candidate-choice {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      padding-top: 6px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .choice-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .choice-label input {
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Fixed bottom banner */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+      z-index: 100;
+    }
+
+    .status-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        grid-template-columns: 70px 1fr;
+        padding: 12px;
+        gap: 12px;
+      }
+      .letter-char {
+        font-size: 1.5rem;
+      }
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        mojimoji 音源チェッカー & 聴き比べツール
+      </h1>
+      <p class="subtitle">
+        各文字の候補音源をワンクリックで聴き比べできます。特に英語は<strong>英国式ジョリーフォニックス純粋音（UK Jolly Phonics）</strong>をダウンロード済みです。
+      </p>
+
+      <div class="toolbar">
+        <div class="tabs">
+          <button class="tab-btn active" id="tab-en" onclick="switchLang('en')">🇬🇧 英語 (A〜Z)</button>
+          <button class="tab-btn" id="tab-pl" onclick="switchLang('pl')">🇵🇱 ポーランド語 (A〜Ż)</button>
+        </div>
+
+        <div class="controls">
+          <label style="font-size: 0.82rem; color: var(--text-muted);">再生速度:
+            <select class="speed-select" id="playback-rate" onchange="setPlaybackRate(this.value)">
+              <option value="0.8">0.8x (こども向け)</option>
+              <option value="1.0" selected>1.0x (標準)</option>
+              <option value="1.2">1.2x (はやい)</option>
+            </select>
+          </label>
+          <button class="btn btn-primary" id="btn-autoplay" onclick="toggleAutoPlayAll()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            A〜Z 連続自動再生
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid" id="cards-container">
+      <!-- Generated via JS -->
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="status-text" id="status-bar">
+      音源を選択して試聴してください。
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button class="btn" onclick="applyBatch('uk')">🇬🇧 全文字 英国式(UK)を採用</button>
+      <button class="btn" onclick="applyBatch('curr')">全文字 現在の音声を維持</button>
+      <button class="btn btn-primary" onclick="exportPreferences()">反映用コードを出力</button>
+    </div>
+  </div>
+
+  <script>
+    let currentLang = 'en';
+    let activeAudio = null;
+    let autoPlayIndex = -1;
+    let autoPlayRunning = false;
+    let playbackRate = 1.0;
+
+    const ENGLISH_LETTERS = [
+      { id: 'a', char: 'Aa', soundIpa: '/æ/', word: 'apple' },
+      { id: 'b', char: 'Bb', soundIpa: '/b/', word: 'bat' },
+      { id: 'c', char: 'Cc', soundIpa: '/k/', word: 'cat' },
+      { id: 'd', char: 'Dd', soundIpa: '/d/', word: 'dog' },
+      { id: 'e', char: 'Ee', soundIpa: '/e/', word: 'egg' },
+      { id: 'f', char: 'Ff', soundIpa: '/f/', word: 'fish' },
+      { id: 'g', char: 'Gg', soundIpa: '/ɡ/', word: 'guitar' },
+      { id: 'h', char: 'Hh', soundIpa: '/h/', word: 'hat' },
+      { id: 'i', char: 'Ii', soundIpa: '/ɪ/', word: 'igloo' },
+      { id: 'j', char: 'Jj', soundIpa: '/dʒ/', word: 'jelly' },
+      { id: 'k', char: 'Kk', soundIpa: '/k/', word: 'kite' },
+      { id: 'l', char: 'Ll', soundIpa: '/l/', word: 'lion' },
+      { id: 'm', char: 'Mm', soundIpa: '/m/', word: 'monkey' },
+      { id: 'n', char: 'Nn', soundIpa: '/n/', word: 'nest' },
+      { id: 'o', char: 'Oo', soundIpa: '/ɒ/', word: 'octopus' },
+      { id: 'p', char: 'Pp', soundIpa: '/p/', word: 'pig' },
+      { id: 'q', char: 'Qq', soundIpa: '/kw/', word: 'queen' },
+      { id: 'r', char: 'Rr', soundIpa: '/r/', word: 'rabbit' },
+      { id: 's', char: 'Ss', soundIpa: '/s/', word: 'sun' },
+      { id: 't', char: 'Tt', soundIpa: '/t/', word: 'tiger' },
+      { id: 'u', char: 'Uu', soundIpa: '/ʌ/', word: 'umbrella' },
+      { id: 'v', char: 'Vv', soundIpa: '/v/', word: 'violin' },
+      { id: 'w', char: 'Ww', soundIpa: '/w/', word: 'watch' },
+      { id: 'x', char: 'Xx', soundIpa: '/ks/', word: 'fox' },
+      { id: 'y', char: 'Yy', soundIpa: '/j/', word: 'yacht' },
+      { id: 'z', char: 'Zz', soundIpa: '/z/', word: 'zebra' }
+    ];
+
+    const POLISH_LETTERS = [
+      { id: 'a', char: 'A a', soundIpa: '[a]', word: 'jabłko' },
+      { id: 'a_ogonek', char: 'Ą ą', soundIpa: '[ɔ̃]', word: 'dąb' },
+      { id: 'b', char: 'B b', soundIpa: '[b]', word: 'balon' },
+      { id: 'c', char: 'C c', soundIpa: '[ts]', word: 'cebula' },
+      { id: 'c_acute', char: 'Ć ć', soundIpa: '[tɕ]', word: 'ćma' },
+      { id: 'd', char: 'D d', soundIpa: '[d]', word: 'dom' },
+      { id: 'e', char: 'E e', soundIpa: '[ɛ]', word: 'ekran' },
+      { id: 'e_ogonek', char: 'Ę ę', soundIpa: '[ɛ̃]', word: 'gęś' },
+      { id: 'g', char: 'G g', soundIpa: '[ɡ]', word: 'góra' },
+      { id: 'k', char: 'K k', soundIpa: '[k]', word: 'kot' },
+      { id: 'l', char: 'L l', soundIpa: '[l]', word: 'lalka' },
+      { id: 'l_stroke', char: 'Ł ł', soundIpa: '[w]', word: 'łódka' },
+      { id: 'm', char: 'M m', soundIpa: '[m]', word: 'mama' },
+      { id: 'n', char: 'N n', soundIpa: '[n]', word: 'nos' },
+      { id: 'o', char: 'O o', soundIpa: '[ɔ]', word: 'oko' },
+      { id: 'o_acute', char: 'Ó ó', soundIpa: '[u]', word: 'ósemka' },
+      { id: 'p', char: 'P p', soundIpa: '[p]', word: 'pies' },
+      { id: 'r', char: 'R r', soundIpa: '[r]', word: 'ryba' },
+      { id: 's', char: 'S s', soundIpa: '[s]', word: 'słońce' },
+      { id: 's_acute', char: 'Ś ś', soundIpa: '[ɕ]', word: 'ślimak' },
+      { id: 't', char: 'T t', soundIpa: '[t]', word: 'tata' },
+      { id: 'u', char: 'U u', soundIpa: '[u]', word: 'ucho' },
+      { id: 'w', char: 'W w', soundIpa: '[v]', word: 'woda' },
+      { id: 'z', char: 'Z z', soundIpa: '[z]', word: 'zebra' },
+      { id: 'z_acute', char: 'Ź ź', soundIpa: '[ʑ]', word: 'źrebak' },
+      { id: 'z_dot', char: 'Ż ż', soundIpa: '[ʐ]', word: 'żaba' }
+    ];
+
+    // Selections state
+    const preferences = {};
+
+    function switchLang(lang) {
+      currentLang = lang;
+      stopAudio();
+      document.getElementById('tab-en').classList.toggle('active', lang === 'en');
+      document.getElementById('tab-pl').classList.toggle('active', lang === 'pl');
+      renderCards();
+    }
+
+    function setPlaybackRate(rate) {
+      playbackRate = parseFloat(rate);
+      if (activeAudio) {
+        activeAudio.playbackRate = playbackRate;
+      }
+    }
+
+    function stopAudio() {
+      if (activeAudio) {
+        activeAudio.pause();
+        activeAudio.onended = null;
+        activeAudio = null;
+      }
+      document.querySelectorAll('.active-pill').forEach(el => el.classList.remove('active-pill'));
+      document.querySelectorAll('.card.playing').forEach(el => el.classList.remove('playing'));
+    }
+
+    function playSound(url, pillEl, cardEl, onComplete) {
+      stopAudio();
+      if (pillEl) pillEl.classList.add('active-pill');
+      if (cardEl) cardEl.classList.add('playing');
+
+      // Resolve base URL for both localhost and GitHub Pages subpath
+      const base = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+      const cleanUrl = url.startsWith('/') ? url.slice(1) : url;
+      const fullUrl = base + cleanUrl + (cleanUrl.includes('?') ? '&' : '?') + 't=' + Date.now();
+      const audio = new Audio(fullUrl);
+      audio.playbackRate = playbackRate;
+      activeAudio = audio;
+
+      document.getElementById('status-bar').textContent = `再生中: ${cleanUrl}`;
+
+      audio.onended = () => {
+        stopAudio();
+        document.getElementById('status-bar').textContent = `再生完了`;
+        if (onComplete) onComplete();
+      };
+      audio.onerror = () => {
+        stopAudio();
+        document.getElementById('status-bar').textContent = `エラー: 音声ファイルの読み込みに失敗しました (${url})`;
+        if (onComplete) onComplete();
+      };
+      audio.play().catch(e => {
+        stopAudio();
+        if (onComplete) onComplete();
+      });
+    }
+
+    function toggleAutoPlayAll() {
+      if (autoPlayRunning) {
+        autoPlayRunning = false;
+        stopAudio();
+        document.getElementById('btn-autoplay').innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> A〜Z 連続自動再生';
+        return;
+      }
+
+      autoPlayRunning = true;
+      autoPlayIndex = 0;
+      document.getElementById('btn-autoplay').innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg> 停止';
+      playNextInQueue();
+    }
+
+    function playNextInQueue() {
+      const items = currentLang === 'en' ? ENGLISH_LETTERS : POLISH_LETTERS;
+      if (!autoPlayRunning || autoPlayIndex >= items.length) {
+        autoPlayRunning = false;
+        document.getElementById('btn-autoplay').innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> A〜Z 連続自動再生';
+        document.getElementById('status-bar').textContent = '全文字の連続再生が完了しました。';
+        return;
+      }
+
+      const item = items[autoPlayIndex];
+      const cardEl = document.getElementById(`card-${item.id}`);
+      if (cardEl) cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // In English, play candidate 1 (UK Jolly); In Polish, play current sound
+      const url = currentLang === 'en' 
+        ? `/audio/candidates/uk_jolly/${item.id}.mp3`
+        : `/audio/polish/pl_${item.id}_sound.mp3`;
+
+      const pillEl = cardEl ? cardEl.querySelector('.play-pill') : null;
+      playSound(url, pillEl, cardEl, () => {
+        autoPlayIndex++;
+        setTimeout(playNextInQueue, 350);
+      });
+    }
+
+    function renderCards() {
+      const container = document.getElementById('cards-container');
+      const items = currentLang === 'en' ? ENGLISH_LETTERS : POLISH_LETTERS;
+      container.innerHTML = '';
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.id = `card-${item.id}`;
+
+        if (currentLang === 'en') {
+          const ukAudioUrl = `/audio/candidates/uk_jolly/${item.id}.mp3`;
+          const currSoundUrl = `/audio/english/en_${item.id}_sound.mp3`;
+          const nameAudioUrl = `/audio/english/en_${item.id}_name.mp3`;
+          const wordAudioUrl = `/audio/english/en_${item.id}_word.mp3`;
+
+          card.innerHTML = `
+            <div class="letter-badge">
+              <div class="letter-char">${item.char}</div>
+              <div class="letter-meta">${item.soundIpa}</div>
+            </div>
+            <div class="audio-group">
+              <div class="audio-row">
+                <button class="play-pill pill-uk" onclick="playSound('${ukAudioUrl}', this, this.closest('.card'))">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  🇬🇧 候補1: 英国式フォニックス (UK Jolly)
+                </button>
+                <button class="play-pill pill-curr" onclick="playSound('${currSoundUrl}', this, this.closest('.card'))">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  候補2: 現在のフォニックス音
+                </button>
+              </div>
+              <div class="audio-row" style="opacity: 0.85;">
+                <button class="play-pill" onclick="playSound('${nameAudioUrl}', this, this.closest('.card'))">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  文字名 (${item.id.toUpperCase()})
+                </button>
+                <button class="play-pill" onclick="playSound('${wordAudioUrl}', this, this.closest('.card'))">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  単語 (${item.word})
+                </button>
+              </div>
+              <div class="candidate-choice">
+                <span class="tag">採用選択</span>
+                <label class="choice-label">
+                  <input type="radio" name="choice-${item.id}" value="uk" checked onchange="setPreference('${item.id}', 'uk')">
+                  🇬🇧 英国式 (候補1)
+                </label>
+                <label class="choice-label">
+                  <input type="radio" name="choice-${item.id}" value="curr" onchange="setPreference('${item.id}', 'curr')">
+                  現在音 (候補2)
+                </label>
+              </div>
+            </div>
+          `;
+        } else {
+          // Polish
+          const currSoundUrl = `/audio/polish/pl_${item.id}_sound.mp3`;
+          const nameAudioUrl = `/audio/polish/pl_${item.id}_name.mp3`;
+          const wordAudioUrl = `/audio/polish/pl_${item.id}_word.mp3`;
+
+          card.innerHTML = `
+            <div class="letter-badge">
+              <div class="letter-char">${item.char}</div>
+              <div class="letter-meta">${item.soundIpa}</div>
+            </div>
+            <div class="audio-group">
+              <div class="audio-row">
+                <button class="play-pill pill-curr" onclick="playSound('${currSoundUrl}', this, this.closest('.card'))">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  純粋音 (Głoska: ${item.soundIpa})
+                </button>
+                <button class="play-pill" onclick="playSound('${nameAudioUrl}', this, this.closest('.card'))">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  文字名 (Litera)
+                </button>
+                <button class="play-pill" onclick="playSound('${wordAudioUrl}', this, this.closest('.card'))">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  単語 (${item.word})
+                </button>
+              </div>
+              <div class="candidate-choice">
+                <span class="tag">評価</span>
+                <label class="choice-label">
+                  <input type="radio" name="choice-${item.id}" value="ok" checked>
+                  良好 (OK)
+                </label>
+                <label class="choice-label">
+                  <input type="radio" name="choice-${item.id}" value="ng">
+                  要調整 (NG)
+                </label>
+              </div>
+            </div>
+          `;
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    function setPreference(id, choice) {
+      preferences[id] = choice;
+      document.getElementById('status-bar').textContent = `[${id.toUpperCase()}] に ${choice === 'uk' ? '英国式(UK)' : '現在音'} を選択しました。`;
+    }
+
+    function applyBatch(choice) {
+      const items = currentLang === 'en' ? ENGLISH_LETTERS : POLISH_LETTERS;
+      items.forEach(item => {
+        preferences[item.id] = choice;
+        const radio = document.querySelector(`input[name="choice-${item.id}"][value="${choice}"]`);
+        if (radio) radio.checked = true;
+      });
+      document.getElementById('status-bar').textContent = `全文字に「${choice === 'uk' ? '英国式(UK)' : '現在音'}」を一括適用しました。`;
+    }
+
+    function exportPreferences() {
+      const output = JSON.stringify(preferences, null, 2);
+      navigator.clipboard.writeText(output).then(() => {
+        alert('選択結果をクリップボードにコピーしました！チャットに貼り付けてご指示いただけます。');
+      }).catch(() => {
+        prompt('以下のJSONをコピーしてチャットにお送りください:', output);
+      });
+    }
+
+    // Initial render
+    renderCards();
+  </script>
+</body>
+</html>
