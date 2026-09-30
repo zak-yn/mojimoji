@@ -258,30 +258,9 @@ class SpeechEngine {
       return;
     }
 
-    // Polish: play authentic native pre-recorded sequence
+    // Polish: play authentic native pre-recorded sequence (Name -> Sound -> Word)
     if (item.langCode === 'pl-PL' && (item.id.startsWith('pl_') || item.id.startsWith('pl_lower_'))) {
       const baseId = item.id.replace('pl_lower_', 'pl_');
-      const POLISH_VOWELS = new Set([
-        'pl_a', 'pl_a_ogonek', 'pl_e', 'pl_e_ogonek', 'pl_o', 'pl_o_acute', 'pl_u'
-      ]);
-
-      // Polish vowels have identical letter name and phonics sound ([a], [e], [o]...).
-      // Skip the duplicate sound step so the child is not confused by immediate repetition.
-      if (POLISH_VOWELS.has(baseId)) {
-        if (onStepChange) onStepChange('name');
-        this.playAudioFile(`/audio/polish/${baseId}_name.mp3`, () => {
-          this.activeChainTimeout = window.setTimeout(() => {
-            if (onStepChange) onStepChange('word');
-            this.playAudioFile(`/audio/polish/${baseId}_word.mp3`, () => {
-              if (onStepChange) onStepChange(null);
-              if (onComplete) onComplete();
-            });
-          }, 400);
-        });
-        return;
-      }
-
-      // Consonants: 3-step sequence (Name -> Sound -> Word)
       if (onStepChange) onStepChange('name');
       this.playAudioFile(`/audio/polish/${baseId}_name.mp3`, () => {
         this.activeChainTimeout = window.setTimeout(() => {
@@ -293,7 +272,7 @@ class SpeechEngine {
                 if (onStepChange) onStepChange(null);
                 if (onComplete) onComplete();
               });
-            }, 400);
+            }, 350);
           });
         }, 400);
       });
