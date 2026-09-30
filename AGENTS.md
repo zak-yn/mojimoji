@@ -98,3 +98,10 @@ mojimoji/
   - Addressed auditory ambiguity on UK Jolly `L`: The raw Jolly recording used a high-pitched palatalized tongue lick that sounded like Japanese vowel "イ" (`[i]`/`[ji]`).
   - Replaced `/audio/english/en_l_sound.mp3` with studio alveolar lateral approximant `/l/` (0.61s) with distinct tongue-tip consonant onset.
   - Added multi-candidate audition controls for `L` in `audio-checker.html` and bumped cache buster to `?v=20260930_l_clear`. Re-deployed to GitHub Pages.
+- **2026-09-30 (Vocabulary & Text Alignment - English N, P, W Words Matched to Audio)**:
+  - Aligned displayed example words and translations in `src/data/characters.ts` (both uppercase and lowercase sets) with the spoken audio files in `/audio/english/`:
+    - `N`: "Nut" (木の実) → `Nest` (とりのす)
+    - `P`: "Panda" (パンダ) → `Pig` (ぶた)
+    - `W`: "Walrus" (セイウチ) → `Window` (まど)
+  - Verified 100% parity across all 26 English letters (A-Z) between spoken audio (`en_*_word.mp3`) and displayed text. Rebuilt and deployed live to GitHub Pages.
+

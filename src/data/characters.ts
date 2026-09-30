@@ -2597,8 +2597,8 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
         "letterName": "N",
         "letterSound": "/n/",
         "phonicsSpokenText": "nuh",
-        "exampleWord": "Nut",
-        "exampleTranslation": "木の実",
+        "exampleWord": "Nest",
+        "exampleTranslation": "とりのす",
         "langCode": "en-US",
         "strokes": [
           {
@@ -2635,8 +2635,8 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
         "letterName": "P",
         "letterSound": "/p/",
         "phonicsSpokenText": "puh",
-        "exampleWord": "Panda",
-        "exampleTranslation": "パンダ",
+        "exampleWord": "Pig",
+        "exampleTranslation": "ぶた",
         "langCode": "en-US",
         "strokes": [
           {
@@ -2770,8 +2770,8 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
         "letterName": "W",
         "letterSound": "/w/",
         "phonicsSpokenText": "wuh",
-        "exampleWord": "Walrus",
-        "exampleTranslation": "セイウチ",
+        "exampleWord": "Window",
+        "exampleTranslation": "まど",
         "langCode": "en-US",
         "strokes": [
           {
@@ -3099,8 +3099,8 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
         "letterName": "n",
         "letterSound": "/n/",
         "phonicsSpokenText": "nuh",
-        "exampleWord": "Nut",
-        "exampleTranslation": "木の実",
+        "exampleWord": "Nest",
+        "exampleTranslation": "とりのす",
         "langCode": "en-US",
         "strokes": [
           {
@@ -3133,8 +3133,8 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
         "letterName": "p",
         "letterSound": "/p/",
         "phonicsSpokenText": "puh",
-        "exampleWord": "Panda",
-        "exampleTranslation": "パンダ",
+        "exampleWord": "Pig",
+        "exampleTranslation": "ぶた",
         "langCode": "en-US",
         "strokes": [
           {
@@ -3264,8 +3264,8 @@ export const CHARACTER_SETS: Record<LanguageType, CharacterSet> = {
         "letterName": "w",
         "letterSound": "/w/",
         "phonicsSpokenText": "wuh",
-        "exampleWord": "Walrus",
-        "exampleTranslation": "セイウチ",
+        "exampleWord": "Window",
+        "exampleTranslation": "まど",
         "langCode": "en-US",
         "strokes": [
           {
