@@ -94,3 +94,7 @@ mojimoji/
   - Discovered raw candidate UK Jolly audio contained 11-second classroom lesson speech repeating sounds ("a... a... ant... a... a... a").
   - Automated frame-accurate bit-perfect MP3 slicing for all 26 letters (A-Z), extracting strictly the first single utterance (0.29s–0.86s, 5KB–13KB) with zero quality loss or re-encoding artifacts.
   - Bumped cache buster to `?v=20260930_uk_1shot` in `tts.ts` and deployed live to GitHub Pages (`gh-pages`). Live HTTP 200 verified (Content-Length: 7,941 bytes for A).
+- **2026-09-30 (Audio Calibration - Letter L Phonics Lateral Consonant Replacement)**:
+  - Addressed auditory ambiguity on UK Jolly `L`: The raw Jolly recording used a high-pitched palatalized tongue lick that sounded like Japanese vowel "イ" (`[i]`/`[ji]`).
+  - Replaced `/audio/english/en_l_sound.mp3` with studio alveolar lateral approximant `/l/` (0.61s) with distinct tongue-tip consonant onset.
+  - Added multi-candidate audition controls for `L` in `audio-checker.html` and bumped cache buster to `?v=20260930_l_clear`. Re-deployed to GitHub Pages.
