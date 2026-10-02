@@ -103,5 +103,8 @@ mojimoji/
     - `N`: "Nut" (木の実) → `Nest` (とりのす)
     - `P`: "Panda" (パンダ) → `Pig` (ぶた)
     - `W`: "Walrus" (セイウチ) → `Window` (まど)
-  - Verified 100% parity across all 26 English letters (A-Z) between spoken audio (`en_*_word.mp3`) and displayed text. Rebuilt and deployed live to GitHub Pages.
+- **2026-10-03 (Audio Calibration - Expanded Multi-Source L Candidates in Audio Checker)**:
+  - Curated 8 distinct L sound candidates from international sources (Phonicademy, UK Jolly seg2/seg4, Wikimedia UK native, IPA standard [l], Google UK ull phonics, Google UK l, Google US ull).
+  - Expanded interactive audition buttons in [`public/audio-checker.html`](file:///c:/Users/wonsh/antigravity_projects/mojimoji/public/audio-checker.html) and deployed live to GitHub Pages so users can audition each candidate with 1 tap.
+
 
