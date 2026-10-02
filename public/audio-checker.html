@@ -584,14 +584,36 @@
                   ${isL ? '▶ 採用中: クリアな舌先音 (/l/)' : '▶ 採用中: 英国式1音フォニックス'}
                 </button>
                 ${isL ? `
-                <button class="play-pill pill-uk" onclick="playSound('/audio/candidates/l_options/uk_jolly_seg1.mp3', this, this.closest('.card'))">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  UK Jolly (イに聞こえる高音)
-                </button>
-                <button class="play-pill" onclick="playSound('/audio/candidates/l_options/uk_jolly_seg2.mp3', this, this.closest('.card'))">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  UK Jolly (第2発声)
-                </button>
+                </div>
+                <div class="audio-row" style="margin-top: 6px; flex-wrap: wrap; gap: 6px;">
+                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); width: 100%;">L 音源候補（タップで試聴）:</span>
+                  <button class="play-pill pill-curr" onclick="playSound('/audio/candidates/l_options/opt_phonicademy_l.mp3', this, this.closest('.card'))">
+                    ① Phonicademy (/l/ 舌先音 - 現在採用中)
+                  </button>
+                  <button class="play-pill pill-uk" onclick="playSound('/audio/candidates/l_options/uk_jolly_seg2.mp3', this, this.closest('.card'))">
+                    ② UK Jolly (第2発声 低めの l)
+                  </button>
+                  <button class="play-pill" onclick="playSound('/audio/candidates/l_options/uk_jolly_seg4.mp3', this, this.closest('.card'))">
+                    ③ UK Jolly (第4発声)
+                  </button>
+                  <button class="play-pill" onclick="playSound('/audio/candidates/l_options/wikimedia_en_uk_l.ogg', this, this.closest('.card'))">
+                    ④ 英国ネイティブ話者 (Wikimedia UK)
+                  </button>
+                  <button class="play-pill" onclick="playSound('/audio/candidates/l_options/wikimedia_ipa_alveolar_lateral.ogg', this, this.closest('.card'))">
+                    ⑤ 国際音声記号 IPA 標準 ([l] 側面音)
+                  </button>
+                  <button class="play-pill" onclick="playSound('/audio/candidates/l_options/google_en_gb_ull.mp3', this, this.closest('.card'))">
+                    ⑥ 英国フォニックス ull 調音 (Google UK)
+                  </button>
+                  <button class="play-pill" onclick="playSound('/audio/candidates/l_options/google_en_gb_l.mp3', this, this.closest('.card'))">
+                    ⑦ 英国式 TTS l (Google UK)
+                  </button>
+                  <button class="play-pill" onclick="playSound('/audio/candidates/l_options/google_en_us_ull.mp3', this, this.closest('.card'))">
+                    ⑧ 米国式 ull 調音 (Google US)
+                  </button>
+                  <button class="play-pill" onclick="playSound('/audio/candidates/l_options/uk_jolly_seg1.mp3', this, this.closest('.card'))" style="opacity: 0.6;">
+                    参考: UK Jolly 第1発声 (イに聞こえる高音)
+                  </button>
                 ` : ''}
               </div>
               <div class="audio-row" style="opacity: 0.85;">
