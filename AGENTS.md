@@ -103,8 +103,9 @@ mojimoji/
     - `N`: "Nut" (木の実) → `Nest` (とりのす)
     - `P`: "Panda" (パンダ) → `Pig` (ぶた)
     - `W`: "Walrus" (セイウチ) → `Window` (まど)
-- **2026-10-03 (Audio Calibration - Expanded Multi-Source L Candidates in Audio Checker)**:
-  - Curated 8 distinct L sound candidates from international sources (Phonicademy, UK Jolly seg2/seg4, Wikimedia UK native, IPA standard [l], Google UK ull phonics, Google UK l, Google US ull).
-  - Expanded interactive audition buttons in [`public/audio-checker.html`](file:///c:/Users/wonsh/antigravity_projects/mojimoji/public/audio-checker.html) and deployed live to GitHub Pages so users can audition each candidate with 1 tap.
+- **2026-10-03 (Audio Calibration - Reverted to Original UK Jolly Phonics for Letter L)**:
+  - Per user preference, restored the original authentic UK Jolly Phonics recording (`uk_jolly_seg1.mp3`, 9,613 bytes) for Letter `L` at `/audio/english/en_l_sound.mp3`.
+  - Updated cache buster in `src/speech/tts.ts` to `?v=20261003_uk_jolly_l` for immediate client refresh. Rebuilt and deployed live to GitHub Pages.
+
 
 
